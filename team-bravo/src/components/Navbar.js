@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Navbar(){
     return(
-        <h1>Team Bravo</h1>
+        <div className='bg-blue ml'>
+            <h1>Hello</h1>
+        </div>
     )
 }
