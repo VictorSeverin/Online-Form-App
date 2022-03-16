@@ -1,0 +1,46 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding-top: 0.5%;
+    padding-left: 1%;
+    background-color: #D6D6D6;
+}
+
+.maintable h1 {
+    font-style: normal;
+    font-size: 64px;
+    padding-bottom: 1%;
+}
+
+.maintable h2 {
+    font-style: normal;
+    font-size: 28px;
+    padding-bottom: 5%;
+}
+
+.emptytable--shape {
+    background-color: #C4C4C4;
+    border-radius: 45px;
+    width: 862px;
+    height: 586px;
+
+    display: flex;
+    position: relative;
+}
+
+.emptytable--text {
+    position: absolute;
+    background-color: #C4C4C4;
+    margin: 0;
+    font-weight: 400;
+    font-size: 24px;
+    left: 50%;
+    bottom: 20%;
+
+    transform: translateX(-50%);
+}
+
+.emptytable--icon {
+    margin: auto;
+    background-color: #C4C4C4;
+}
