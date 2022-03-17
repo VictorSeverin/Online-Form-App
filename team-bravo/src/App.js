@@ -1,9 +1,11 @@
 import logo from './logo.png';
-import Navbar from './components/Navbar';
+import './App.css';
+import Sidebar from "./components/Sidebar/Sidebar"
+
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Sidebar />
     </div>
   );
 }
