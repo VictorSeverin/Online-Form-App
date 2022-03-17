@@ -6,6 +6,7 @@ import * as MdIcons from "react-icons/md";
 import * as IoIcons from "react-icons/io";
 import * as FiIcons from "react-icons/fi";
 import '../Sidebar/sidebar.css'
+import { useState } from 'react'
 
 export default function Sidebar({addElement}){
     return(
