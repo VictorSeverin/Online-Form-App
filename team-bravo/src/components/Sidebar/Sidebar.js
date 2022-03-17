@@ -7,7 +7,7 @@ import * as IoIcons from "react-icons/io";
 import * as FiIcons from "react-icons/fi";
 import '../Sidebar/sidebar.css'
 
-export default function Sidebar(){
+export default function Sidebar({addElement}){
     return(
         <div className='wrapper'>
             <nav className='nav-menu'>
@@ -15,14 +15,14 @@ export default function Sidebar(){
                     <h2>Team bravo</h2>
                 </div>
                 <form className='sidebar-search'>
-                    <input type="text" name = "name" placeholder="Search" class = "input" />
+                    <input type="text" name = "name" placeholder="Search" className = "input" />
                 </form>
                 <ul className='nav-menu-items'>
                     {SidebarData.map((item,id) => {
                         return(
                             <li key = {id} className='sidebar-elem'>
-                                <span>{item.title}</span>
-                                <IoIcons.IoMdAddCircleOutline />
+                                <span onClick={() => addElement(item)}>{item.title}</span>
+                                <IoIcons.IoMdAddCircleOutline onClick={() => addElement(item)}/>
                              </li>
                         )
                     })}

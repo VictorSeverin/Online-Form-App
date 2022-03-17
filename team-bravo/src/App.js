@@ -3,9 +3,13 @@ import './App.css';
 import Sidebar from "./components/Sidebar/Sidebar"
 
 function App() {
+  
+  const addElement = (item) => {
+    console.log(item)
+  }
   return (
     <div className="App">
-      <Sidebar />
+      <Sidebar addElement={addElement} />
     </div>
   );
 }
