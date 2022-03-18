@@ -38,8 +38,8 @@ class FieldTable extends React.Component {
 
     render() {
         return (
-            <div className="fieldtable" onClick={this.testHandleClick.bind(this)}>
-                <button>Test Add</button>
+            <div className="fieldtable">
+                <button onClick={this.testHandleClick.bind(this)}>Test Add</button>
                 <table>
                     <thead>
                         <tr>
