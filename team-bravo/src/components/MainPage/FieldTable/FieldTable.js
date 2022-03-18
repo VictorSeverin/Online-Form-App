@@ -10,16 +10,47 @@ class FieldTable extends React.Component {
         this.state = { fields: [] }
     }
 
+    testHandleClick() {
+        var fields = this.state.fields
+        var f = {title: "Name " + this.testIndex, key: "name", type: "Text Field", required: true}
+
+        fields.push(f)
+
+        this.setState({fields: fields})
+
+        console.log(this.state.fields)
+        this.testIndex += 1
+    }
+
+    renderFields() {
+        return this.state.fields.map(function(o, i) {
+            return (
+                <tr key={i}>
+                    <td>{o.title}</td>
+                    <td>{o.key}</td>
+                    <td>{o.type}</td>
+                    <td><input type="checkbox"></input></td>
+                </tr>
+            )
+        })
+    }
+
     render() {
         return (
-            <div className="fieldtable">
+            <div className="fieldtable" onClick={this.testHandleClick.bind(this)}>
+                <button>Test Add</button>
                 <table>
                     <thead>
-                        <th>Title</th>
-                        <th>Key</th>
-                        <th>Type</th>
-                        <th>Required</th>
+                        <tr>
+                            <th>Title</th>
+                            <th>Key</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                        </tr>
                     </thead>
+                    <tbody>
+                        {this.renderFields()}
+                    </tbody>
                 </table>
             </div>
         )
