@@ -1,4 +1,5 @@
 import React from "react"
+import "./FieldTable.css"
 
 class FieldTable extends React.Component {
     testIndex = 0 // this is just for the dummy data
