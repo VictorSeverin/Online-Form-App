@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar/Sidebar"
 
 
 import { useState } from 'react'
+import MainPage from'./components/MainPage/MainPage'
 
 function App() {
   const addElement = (item) => {
@@ -11,7 +12,8 @@ function App() {
   }
   return (
     <div className="App">
-      <Sidebar addElement={addElement} />
+      {/* <Sidebar addElement={addElement} /> */}
+      <MainPage />
     </div>
   );
 }
