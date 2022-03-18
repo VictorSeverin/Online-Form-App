@@ -5,10 +5,10 @@ import * as BsIcons from "react-icons/bs";
 import * as MdIcons from "react-icons/md";
 import * as IoIcons from "react-icons/io";
 import * as FiIcons from "react-icons/fi";
-import '../Sidebar/sidebar.css'
+import './sidebar.css'
 import { useState } from 'react'
 
-export default function Sidebar({addElement}){
+export default function Sidebar(props){
     return(
         <div className='wrapper'>
             <nav className='nav-menu'>
@@ -22,8 +22,8 @@ export default function Sidebar({addElement}){
                     {SidebarData.map((item,id) => {
                         return(
                             <li key = {id} className='sidebar-elem'>
-                                <span onClick={() => addElement(item)}>{item.title}</span>
-                                <IoIcons.IoMdAddCircleOutline onClick={() => addElement(item)}/>
+                                <span onClick={() => props.handleShow}>{item.title}</span>
+                                <IoIcons.IoMdAddCircleOutline onClick={() => props.handleShow()}/>
                              </li>
                         )
                     })}
