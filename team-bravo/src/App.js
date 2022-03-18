@@ -8,7 +8,7 @@ import ModalComp from './components/Modal/ModalComp';
 function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  function handleShow(){
+  const handleShow = () => {
     setShow(true);
     console.log("jora")
   }
