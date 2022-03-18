@@ -4,7 +4,10 @@ import { Button, ModalDialog, ModalFooter } from 'react-bootstrap';
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 
-export default function ModalComp({handleClose,handleShow,show}) {   
+export default function ModalComp({handleClose,handleShow,show,finalElems}) {   
+  const printItem = () =>{
+    console.log(finalElems)
+  }
   return (
       <>
       <Button variant="primary" onClick={handleShow}>
@@ -19,6 +22,7 @@ export default function ModalComp({handleClose,handleShow,show}) {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Label</Form.Label>
+            <Form.Label onClick={printItem}>Element type:</Form.Label>
             <Form.Control type="email" placeholder="Enter label" />
           </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">

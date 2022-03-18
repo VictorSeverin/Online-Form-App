@@ -6,11 +6,12 @@ import { useState } from 'react'
 import ModalComp from './components/Modal/ModalComp';
 
 function App() {
+  const [finalElems,setFinalElems] = useState();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => {
+  const handleShow = (item) => {
     setShow(true);
-    console.log("jora")
+    setFinalElems(item);
   }
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
         handleClose={handleClose}
         handleShow={handleShow}
         show={show}
+        item={finalElems}
       />
     </div>
   );

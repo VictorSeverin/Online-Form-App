@@ -8,7 +8,7 @@ import * as FiIcons from "react-icons/fi";
 import './sidebar.css'
 import { useState } from 'react'
 
-export default function Sidebar(props){
+export default function Sidebar({handleShow}){
     return(
         <div className='wrapper'>
             <nav className='nav-menu'>
@@ -22,8 +22,8 @@ export default function Sidebar(props){
                     {SidebarData.map((item,id) => {
                         return(
                             <li key = {id} className='sidebar-elem'>
-                                <span onClick={() => props.handleShow}>{item.title}</span>
-                                <IoIcons.IoMdAddCircleOutline onClick={() => props.handleShow()}/>
+                                <span onClick={() => handleShow(item)}>{item.title}</span>
+                                <IoIcons.IoMdAddCircleOutline onClick={() => handleShow(item)}/>
                              </li>
                         )
                     })}
