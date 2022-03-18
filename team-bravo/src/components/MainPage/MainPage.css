@@ -18,6 +18,14 @@
     padding-bottom: 5%;
 }
 
+.table-component {
+    background-color: white;
+    border-radius: 30px;
+    width: 862px;
+    display: flex;
+    padding: 25px 25px 25px 25px;
+}
+
 .emptytable--shape {
     background-color: #C4C4C4;
     border-radius: 45px;

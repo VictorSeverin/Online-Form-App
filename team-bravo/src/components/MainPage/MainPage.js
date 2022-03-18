@@ -18,7 +18,9 @@ function MainPage() {
         <div className="mainpage">
             <h1>Welcome</h1>
             <h2>to Team Bravo's Web Form Generator</h2>
-            <FieldTable />
+            <div className="table-component">
+                <FieldTable />
+            </div>
         </div>
     )
 }
