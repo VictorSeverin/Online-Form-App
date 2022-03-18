@@ -1,4 +1,5 @@
 import React from "react";
+import FieldTable from "./FieldTable/FieldTable"
 import './MainPage.css';
 
 /*
@@ -17,6 +18,7 @@ function MainPage() {
         <div className="mainpage">
             <h1>Welcome</h1>
             <h2>to Team Bravo's Web Form Generator</h2>
+            <FieldTable />
         </div>
     )
 }
