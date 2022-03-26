@@ -4,14 +4,22 @@ import Sidebar from "./components/Sidebar/Sidebar"
 import Modal from "./components/Modal/ModalComp"
 import { useState } from 'react'
 import ModalComp from './components/Modal/ModalComp';
+import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
 
 function App() {
-  const [finalElems,setFinalElems] = useState();
+  const [title,setTitle] = useState('');
+  const [finalElems,setFinalElems] = useState([])
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (item) => {
     setShow(true);
-    setFinalElems(item);
+    setTitle(item)
+  }
+  const addElem = (elem) => {
+    setShow(false)
+    console.log(elem)
+    setFinalElems([...finalElems, elem])
+    console.log(finalElems)
   }
   return (
     <div className="App">
@@ -20,7 +28,8 @@ function App() {
         handleClose={handleClose}
         handleShow={handleShow}
         show={show}
-        item={finalElems}
+        onAdd={addElem}
+        title={title}
       />
     </div>
   );

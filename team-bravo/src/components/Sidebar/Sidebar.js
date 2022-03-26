@@ -22,9 +22,9 @@ export default function Sidebar({handleShow}){
                     {SidebarData.map((item,id) => {
                         return(
                             <li key = {id} className='sidebar-elem'>
-                                <span onClick={() => handleShow(item)}>{item.title}</span>
-                                <IoIcons.IoMdAddCircleOutline onClick={() => handleShow(item)}/>
-                             </li>
+                                <span onClick={() => handleShow(item.title)}>{item.title}</span>
+                                <IoIcons.IoMdAddCircleOutline onClick={() => handleShow(item.title)}/>
+                            </li>
                         )
                     })}
                 </ul>
