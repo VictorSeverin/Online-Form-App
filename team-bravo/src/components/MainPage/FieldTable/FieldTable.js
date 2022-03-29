@@ -23,7 +23,7 @@ function FieldTable() {
     }
 
     return (
-        <div>
+        <div className="fieldtable">
             <button onClick={testAdd}>Test Add</button>
             <table>
                 <thead>
