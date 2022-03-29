@@ -19,7 +19,7 @@ function App() {
     setShow(false)
     console.log(elem)
     setFinalElems([...finalElems, elem])
-    console.log(finalElems)
+    console.log(finalElems.length)
   }
   return (
     <div className="App">
