@@ -1,6 +1,48 @@
 import React from "react"
 import "./FieldTable.css"
 
+function FieldTable() {
+
+    const [fieldsArray, setFieldsArray] = React.useState([])
+
+    function testAdd() {
+        var f = {title: "Name" + fieldsArray.length, key: "name", type: "Text Field", required: true}
+        setFieldsArray([...fieldsArray, f])
+        console.log(fieldsArray)
+    }
+
+    function RenderFields() {
+        return fieldsArray.map((field, index) => 
+            <tr key={index}>
+                <td>{field.title}</td>
+                <td>{field.key}</td>
+                <td>{field.type}</td>
+                <td>{field.required}</td>
+            </tr>
+        )
+    }
+
+    return (
+        <div>
+            <button onClick={testAdd}>Test Add</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <RenderFields />
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
+/*
 class FieldTable extends React.Component {
     testIndex = 0 // this is just for the dummy data
 
@@ -57,5 +99,6 @@ class FieldTable extends React.Component {
         )
     }
 }
+*/
 
 export default FieldTable
