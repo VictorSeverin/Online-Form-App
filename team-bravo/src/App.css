@@ -1,7 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body {
     font-family: "Roboto", sans-serif;
 }
+ .App {
+    display: flex;
+  justify-content: space-between;
+    height: 100vh;
+  } 

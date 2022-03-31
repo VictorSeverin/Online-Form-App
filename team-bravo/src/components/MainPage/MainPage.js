@@ -1,7 +1,7 @@
 import React from "react";
 import FieldTable from "./FieldTable/FieldTable"
-import './MainPage.css';
-
+import './FieldTable/Bootstraptable.css';
+import Bootstraptable from "./FieldTable/Bootstraptable"
 /*
 function EmptyTable() {
     return(
@@ -16,10 +16,14 @@ function EmptyTable() {
 function MainPage() {
     return(
         <div className="mainpage">
-            <h1>Welcome</h1>
-            <h2>to Team Bravo's Web Form Generator</h2>
-            <div className="table-component">
-                <FieldTable />
+            {/* <div className="wrapper">
+                <h1>Welcome</h1>
+                <h2>to Team Bravo's Web Form Generator</h2>
+            </div> */}
+            <div className="table-wrapper">
+                <div className="table-component">
+                    <Bootstraptable />
+                </div>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-* {
+/* * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding-top: 0.5%;
@@ -51,4 +51,20 @@
 .emptytable--icon {
     margin: auto;
     background-color: #C4C4C4;
+} */
+
+.mainpage{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    width: 90%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.table-wrapper{
+    border: 1px solid black;
+    box-shadow: 0 0 25px 10px rgba(0,0,0,.25);
+        border-radius: 20px;
+    
 }

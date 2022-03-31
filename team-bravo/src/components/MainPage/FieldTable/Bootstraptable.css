@@ -1,0 +1,25 @@
+table {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px;
+    background-color: white;
+    text-align: left;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 100px;
+}
+table thead{
+}
+table .tablehead{
+    box-shadow: 0 5px 10px #4a75db;
+}
+table th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+  
+table td {
+    padding: 1rem 2rem;
+}
