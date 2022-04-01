@@ -1,4 +1,4 @@
-table {
+/* table {
     border-collapse: collapse;
     box-shadow: 0 5px 10px;
     background-color: white;
@@ -10,7 +10,7 @@ table {
 table thead{
 }
 table .tablehead{
-    box-shadow: 0 5px 10px #4a75db;
+    box-shadow: 0 5px 10px #ced3df;
 }
 table th {
     padding: 1rem 2rem;
@@ -20,6 +20,6 @@ table th {
     font-weight: 900;
 }
   
-table td {
+/* table td {
     padding: 1rem 2rem;
-}
+} */ 

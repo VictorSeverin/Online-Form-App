@@ -6,6 +6,7 @@ import { useState } from 'react'
 import MainPage from'./components/MainPage/MainPage'
 import ModalComp from './components/Modal/ModalComp';
 import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
+import { SidebarData } from './components/Sidebar/Sidebardata';
 
 function App() {
   const [title,setTitle] = useState('');
@@ -18,15 +19,13 @@ function App() {
   }
   const addElem = (elem) => {
     setShow(false)
-    console.log(elem)
     setFinalElems([...finalElems, elem])
-    console.log(finalElems.length)
   }
   return (
     <div className="App">
       {/* <Sidebar addElement={addElement} /> */}
       <Sidebar handleShow={handleShow}/>
-      <MainPage />
+      <MainPage data={finalElems}/>
       <ModalComp 
         handleClose={handleClose}
         handleShow={handleShow}

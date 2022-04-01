@@ -13,7 +13,7 @@ function EmptyTable() {
 }
 */
 
-function MainPage() {
+function MainPage({data}) {
     return(
         <div className="mainpage">
             {/* <div className="wrapper">
@@ -22,7 +22,7 @@ function MainPage() {
             </div> */}
             <div className="table-wrapper">
                 <div className="table-component">
-                    <Bootstraptable />
+                    <Bootstraptable data={data}/>
                 </div>
             </div>
         </div>
