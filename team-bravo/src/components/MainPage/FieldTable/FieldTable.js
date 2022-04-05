@@ -1,4 +1,4 @@
-import React from "react"
+/*import React from "react"
 import "./FieldTable.css"
 
 class FieldTable extends React.Component {
@@ -59,3 +59,4 @@ class FieldTable extends React.Component {
 }
 
 export default FieldTable
+*/

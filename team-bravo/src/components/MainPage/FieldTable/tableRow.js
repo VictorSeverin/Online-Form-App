@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import Bootstraptable from './Bootstraptable';
+import "./Bootstraptable.css"
 
 export default function (data) {
   const [id,setId] = useState(0);

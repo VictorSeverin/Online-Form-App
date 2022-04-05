@@ -1,3 +1,4 @@
+/**
 .fieldtable {
     display: flex;
     flex-direction: column;
@@ -29,7 +30,7 @@
   }
   
   form {
-    /* display: flex; */
+    /* display: flex; 
     gap: 5px;
   }
   
@@ -39,5 +40,6 @@
   }
   
   form * {
-    /* font-size: 28px; */
+    /* font-size: 28px; 
   }
+  x*/
