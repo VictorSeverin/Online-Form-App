@@ -4,6 +4,7 @@ import { Button, ModalDialog, ModalFooter, DropdownButton, Dropdown} from 'react
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import Service from '../../services/Service';
+import { toHaveDisplayValue } from '@testing-library/jest-dom/dist/matchers';
 //import FieldTable from '../MainPage/FieldTable/FieldTable';
 
 export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {   
@@ -33,7 +34,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //setRadioButtonOptions(...radioButtonOptions,option)
     console.log(option)
   }
-
+  
   /*constructor(props) {
     super(props)
 
@@ -43,7 +44,12 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
       placeholder: ''
     }
     this.saveType = this.saveType.bind(this);
-  }*/
+   */
+
+  changeTypeHandler= (event) => {
+    this.setState({type: event.target.value});
+  }
+
   saveType = (e) => {
     e.preventDefault();
     let type = {type: this.state.type, label: this.state.label, placeholder: this.state.placeholder};
@@ -51,7 +57,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
 
     Service.createType(type);
   }
-
+ 
   return (
       <>
       {(() => {
@@ -63,7 +69,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
                   <Modal.Title>Add {title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <Form onSubmit = {onSubmit & this.saveType}> 
+                <Form onSubmit = {onSubmit & this.saveType}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Label</Form.Label>
                     <Form.Control type="text" placeholder="Enter label" onChange={(e) => setLabel(e.target.value)}/>
