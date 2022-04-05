@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+    font-family: "poppins",sans-serif;
+
+}
 .sidebar-title h2{
     margin: 0;
     padding: 20px 40px;
     border-bottom: 2px solid gray;
-    font-weight: bold;
-    font-size: larger;
+    font-weight: bolder;
+    font-size: 20px;
 }
 .wrapper{
     display: flex;
@@ -12,7 +17,7 @@
 .nav-menu{
     width: 250px;
     height: 100vh;
-    background-color: #2A2C2E;
+    background-color: #11101d;
     color: white;
     position: fixed;
     top: 0;
@@ -29,7 +34,7 @@
     text-align: left;
     align-items: auto;
     font-size: 0.9rem;
-    background-color: #4E4D4D;
+    background-color: #1d1b31;
     border: none;    
 }
 .nav-menu-items{
@@ -45,7 +50,14 @@
     align-items: center;
     padding: 5px;
     margin: 0;
-    padding-left: 50px;
+    /* padding-left: 50px; */
+    transition: all 0.4s ease;
+}
+.sidebar-elem:hover{
+    background-color: #fff;
+    color: #11101d;
+    border-radius: 12px;
+    padding: 10px;
 }
 .sidebar-elem svg{
     padding-right: 10px;
@@ -57,12 +69,15 @@
     padding-top: 15px;
     display: flex;
     justify-content: space-around;
-    border-top: 2px solid gray;
+    background-color: #1d1b31;
     margin-top: 130px;
+    bottom: 0;
+    padding: 18px
 }
-.sidebar-footer h3{
-    font-size: 40px;
-    margin: 0;
+.sidebar-footer img{
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
 }
 .sidebar-footer svg{
     align-self: center;
@@ -71,4 +86,5 @@
 .sidebar-footer p{
     align-self: center;
     font-weight: bold;
+    text-align: center;
 }

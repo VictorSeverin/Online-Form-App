@@ -4,7 +4,7 @@ import './Bootstraptable.css';
 import '../MainPage.css';
 import TableRow from './tableRow';
 import { SidebarData } from './Sidebardata';
-
+import { Form } from 'react-bootstrap'
 export default function Bootstraptable({data}) {
   return (
     <table>
