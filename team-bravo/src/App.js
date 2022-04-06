@@ -7,6 +7,7 @@ import MainPage from'./components/MainPage/MainPage'
 import ModalComp from './components/Modal/ModalComp';
 import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
 import { SidebarData } from './components/Sidebar/Sidebardata';
+import { useEffect } from 'react';
 
 function App() {
   const [title,setTitle] = useState('');
@@ -17,6 +18,24 @@ function App() {
     setShow(true);
     setTitle(item)
   }
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks()
+      setFinalElems(tasksFromServer)
+    }
+
+    getTasks()
+  }, [])
+
+  // Fetch Tasks
+  const fetchTasks = async () => {
+    const res = await fetch('http://localhost:8080/api/v1/types')
+    const data = await res.json()
+
+    console.log(data)
+    return data
+  }
+
   const addElem = (elem) => {
     setShow(false)
     setFinalElems([...finalElems, elem])
