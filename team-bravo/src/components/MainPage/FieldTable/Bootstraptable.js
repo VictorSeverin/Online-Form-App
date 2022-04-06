@@ -2,6 +2,7 @@ import React from 'react'
 import './Bootstraptable.css';
 import '../MainPage.css';
 import TableRow from './tableRow';
+
 export default function Bootstraptable({data}) {
   return (
     <div className='table-wrapper'>
@@ -16,13 +17,7 @@ export default function Bootstraptable({data}) {
         </tr>
       </thead>
       <tbody>
-          {data.map((elem) => {
-              return(
-                  <tr key={elem.id}>
-                      <TableRow data={elem}/>
-                  </tr>
-              )
-          })}
+          <TableRow data={data} />
       </tbody>
     </table>
   </div>

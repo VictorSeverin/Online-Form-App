@@ -1,27 +1,29 @@
 import React from 'react'
-import { useState } from 'react'
 import { Form } from 'react-bootstrap'
-import Bootstraptable from './Bootstraptable';
 import "./Bootstraptable.css"
 
-export default function (data) {
-  const [id,setId] = useState(0);
+function TableRow({data}) {
+
   const handleClick = () =>{
-    console.log(data.data)
+    console.log(data)
   }
-  return (
-    <>
-        <td onClick={handleClick}>{data.data.title}</td>
-        <td>{data.data.label}</td>
-        <td>{data.data.placeholder}</td>
-        <td>
+
+  return data.map((elem, index) =>
+    <tr key={index}>
+      <td onClick={handleClick}>{elem.title}</td>
+      <td>{elem.label}</td>
+      <td>{elem.placeholder}</td>
+      <td>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" checked={data.data.required} />
-        </Form.Group>
-        </td>
-        <td>
-          <button className='btn btn-primary'>Edit</button>
-        </td>
-    </>
+            <Form.Check type="checkbox" checked={elem.required} readOnly/>
+          </Form.Group>
+      </td>
+      <td>
+        <button className='btn btn-primary'>Edit</button>
+      </td>
+
+    </tr>
   )
 }
+
+export default TableRow
