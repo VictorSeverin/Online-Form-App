@@ -22,16 +22,16 @@ export default function Sidebar({handleShow}){
                 <ul className='nav-menu-items'>
                     {SidebarData.map((item,id) => {
                         return(
-                            <li key = {id} className='sidebar-elem'>
-                                <span onClick={() => handleShow(item.title)}>{item.title}</span>
-                                <IoIcons.IoMdAddCircleOutline onClick={() => handleShow(item.title)}/>
+                            <li key = {id} className='sidebar-elem' onClick={() => handleShow(item.title)}>
+                                <span>{item.title}</span>
+                                <IoIcons.IoMdAddCircleOutline/>
                             </li>
                         )
                     })}
                 </ul>
                 <div className='sidebar-footer'>
                     <img src={userLogo} />
-                    <p>User</p>
+                    <p>Chad</p>
                     <FiIcons.FiLogOut />
                 </div>
             </nav>

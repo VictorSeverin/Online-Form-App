@@ -360,6 +360,29 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
               </Modal.Body>
           </Modal>
           )
+          case 'Toggle':
+            return(
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add {title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form onSubmit = {onSubmit}> 
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Label</Form.Label>
+                    <Form.Control type="text" placeholder="Enter label" onChange={(e) => setLabel(e.target.value)}/>
+                  </Form.Group>  
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                      <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
+                    </Form.Group>  
+                  <Button type="submit" variant="primary"  >
+                      Save Changes
+                    </Button>
+                  
+                </Form>
+                </Modal.Body>
+            </Modal>
+          ) 
         }
       }
       )()} 

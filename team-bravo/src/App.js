@@ -39,12 +39,13 @@ function App() {
   const addElem = (elem) => {
     setShow(false)
     setFinalElems([...finalElems, elem])
+    console.log(elem)
   }
   return (
     <div className="App">
       {/* <Sidebar addElement={addElement} /> */}
-      <Sidebar handleShow={handleShow}/>
-      <MainPage data={finalElems}/>
+      <Sidebar handleShow={handleShow} />
+      <MainPage data={finalElems} />
       <ModalComp 
         handleClose={handleClose}
         handleShow={handleShow}

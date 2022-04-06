@@ -22,6 +22,7 @@
     position: fixed;
     top: 0;
     box-shadow: 0 0 25px 10px rgba(0,0,0,.25);
+    overflow: auto;
 }
 .sidebar-search{
     display: flex;

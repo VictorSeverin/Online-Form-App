@@ -17,7 +17,7 @@ export default function Bootstraptable({data}) {
         </tr>
       </thead>
       <tbody>
-          <TableRow data={data} />
+          <TableRow data={data}/>
       </tbody>
     </table>
   </div>

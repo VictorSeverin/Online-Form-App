@@ -1,9 +1,10 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import "./Bootstraptable.css"
+import {useState} from "react"
 
 function TableRow({data}) {
-
+  const [checked, setChecked] = useState(data.required);
   const handleClick = () =>{
     console.log(data)
   }
@@ -15,7 +16,7 @@ function TableRow({data}) {
       <td>{elem.placeholder}</td>
       <td>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" checked={elem.required} readOnly/>
+            <Form.Check type="checkbox" checked={elem.required} onChange={(e) => setChecked(e.target.checked)}/>
           </Form.Group>
       </td>
       <td>
