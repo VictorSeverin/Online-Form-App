@@ -59,3 +59,12 @@ td {
 tr:nth-child(even) {
     background-color: var(--clr-gray150);
 }
+tr .deleteBtn{
+    font-size: 30px;
+    margin-left: 40px;
+}
+tr .deleteBtn:hover{
+    font-size: 35px;
+    border-radius: 5px;
+    transition: all 0.4s ease;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import "./Bootstraptable.css"
 import {useState} from "react"
+import * as MdIcons from "react-icons/md";
 
 function TableRow({data}) {
   const [checked, setChecked] = useState(data.required);
@@ -21,6 +22,7 @@ function TableRow({data}) {
       </td>
       <td>
         <button className='btn btn-primary'>Edit</button>
+        <MdIcons.MdDelete className='btn-outline-danger deleteBtn'/>
       </td>
 
     </tr>
