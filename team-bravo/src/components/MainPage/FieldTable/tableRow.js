@@ -1,11 +1,11 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
-import "./Bootstraptable.css"
 import {useState} from "react"
 import * as MdIcons from "react-icons/md";
 
 function TableRow({data}) {
   const [checked, setChecked] = useState(data.required);
+  
   const handleClick = () =>{
     console.log(data)
   }
