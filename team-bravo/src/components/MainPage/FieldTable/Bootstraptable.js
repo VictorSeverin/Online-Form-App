@@ -19,6 +19,7 @@ export default function Bootstraptable({data}) {
       <tbody>
           <TableRow data={data}/>
       </tbody>
+      {/* <button className='btn btn-primary'>Save</button> */}
     </table>
   </div>
   )

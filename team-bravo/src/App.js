@@ -8,6 +8,7 @@ import ModalComp from './components/Modal/ModalComp';
 import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
 import { SidebarData } from './components/Sidebar/Sidebardata';
 import { useEffect } from 'react';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 
 function App() {
   const [title,setTitle] = useState('');
@@ -42,18 +43,17 @@ function App() {
     console.log(elem)
   }
   return (
-    <div className="App">
-      {/* <Sidebar addElement={addElement} /> */}
-      <Sidebar handleShow={handleShow} />
-      <MainPage data={finalElems} />
-      <ModalComp 
-        handleClose={handleClose}
-        handleShow={handleShow}
-        show={show}
-        onAdd={addElem}
-        title={title}
-      />
-    </div>
+      <div className="App">
+        {/* <Sidebar addElement={addElement} /> */}
+          <Sidebar handleShow={handleShow} />
+          <MainPage data={finalElems} />
+          <ModalComp 
+            handleClose={handleClose}
+            handleShow={handleShow}
+            show={show}
+            onAdd={addElem}
+            title={title} />
+      </div>
   );
 }
 
