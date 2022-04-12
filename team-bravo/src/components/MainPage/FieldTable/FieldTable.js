@@ -1,62 +1,27 @@
-/*import React from "react"
-import "./FieldTable.css"
+import React from 'react'
+import './FieldTable.css';
+import '../MainPage.css';
+import TableRow from './TableRow';
 
-class FieldTable extends React.Component {
-    testIndex = 0 // this is just for the dummy data
-
-    constructor(props) {
-        super(props)
-        
-        // for now create a local array of all the fields
-        this.state = { fields: [] }
-    }
-
-    testHandleClick() {
-        var fields = this.state.fields
-        var f = {title: "Name " + this.testIndex, key: "name", type: "Text Field", required: true}
-
-        fields.push(f)
-
-        this.setState({fields: fields})
-
-        console.log(this.state.fields)
-        this.testIndex += 1
-    }
-
-    renderFields() {
-        return this.state.fields.map(function(o, i) {
-            return (
-                <tr key={i}>
-                    <td>{o.title}</td>
-                    <td>{o.key}</td>
-                    <td>{o.type}</td>
-                    <td><input type="checkbox"></input></td>
-                </tr>
-            )
-        })
-    }
-
-    render() {
-        return (
-            <div className="fieldtable">
-                <button onClick={this.testHandleClick.bind(this)}>Test Add</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Key</th>
-                            <th>Type</th>
-                            <th>Required</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderFields()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+function FieldTable({data}) {
+  return (
+    <div className='table-wrapper'>
+    <table className='boottable'>
+      <thead>
+        <tr className='tablehead'>
+          <th>Type</th>
+          <th>Label</th>
+          <th>Placeholder</th>
+          <th>Required</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          <TableRow data={data}/>
+      </tbody>
+    </table>
+  </div>
+  )
 }
 
-export default FieldTable
-*/
+export default FieldTable;

@@ -1,6 +1,5 @@
 import React from "react";
-import './FieldTable/Bootstraptable.css';
-import Bootstraptable from "./FieldTable/Bootstraptable"
+import FieldTable from "./FieldTable/FieldTable"
 
 function MainPage({data}) {
     return(
@@ -9,7 +8,7 @@ function MainPage({data}) {
             <h2>to Team Bravo's Web Form Generator</h2>
             <div className="table-wrapper">
                 <div className="table-component">
-                    <Bootstraptable data={data}/>
+                    <FieldTable data={data}/>
                 </div>
             </div>
         </div>
