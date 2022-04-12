@@ -13,7 +13,7 @@ function MainPage({data}) {
             <h2>to Team Bravo's Web Form Generator</h2>
             <div className="table-wrapper">
                 <div className="table-component">
-                    {data.lenght ? (
+                    {data ? (
                         <FieldTable data={data}/>
                     ) : (
                     <div className="optional-message"> 
