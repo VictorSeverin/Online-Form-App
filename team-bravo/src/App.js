@@ -9,6 +9,7 @@ import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRule
 import { SidebarData } from './components/Sidebar/Sidebardata';
 import { useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import service from './services/service';
 
 function App() {
   const [title,setTitle] = useState('');
@@ -41,6 +42,12 @@ function App() {
     setShow(false)
     setFinalElems([...finalElems, elem])
     console.log(elem)
+    
+    service.createType(elem).then((response) =>{
+      console.log(response.data)
+    }).then(error =>{
+      console.log(error)
+    })
   }
   return (
       <div className="App">
