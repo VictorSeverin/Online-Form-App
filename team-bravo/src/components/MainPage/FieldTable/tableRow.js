@@ -17,8 +17,8 @@ function TableRow({data}) {
       <td>{elem.placeholder}</td>
       <td>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" checked={elem.required} onChange={(e) => setChecked(e.target.checked)}/>
-          </Form.Group>
+            <Form.Check type="checkbox" checked={elem.required} onChange={(e) => setChecked(e.target.checked)} />
+        </Form.Group>
       </td>
       <td>
         <button className='btn btn-primary'>Edit</button>

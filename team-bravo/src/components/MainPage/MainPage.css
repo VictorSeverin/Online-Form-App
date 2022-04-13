@@ -20,10 +20,15 @@
     font-size: 28px;
     padding-bottom: 20px;
 }
+.form-info{
+    padding: 2rem 0 4rem 0;
+    width: 50%;
+}
 .optional-message{
     height: 30vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -31,8 +36,4 @@
     font-size: 8rem;
     font-weight: lighter;
     padding-bottom: 2rem;
-}
-.form-info{
-    padding: 2rem 0 4rem 0;
-    width: 50%;
 }

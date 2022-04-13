@@ -26,14 +26,14 @@ function MainPage({data}) {
             </div>
             <div className="table-wrapper">
                 <div className="table-component">
-                    {!data.lenght ? (
+                    {data.length > 0 ? (
                         <FieldTable data={data}/>
-                    ) : (
-                    <div className="optional-message"> 
-                        <IoIcons.IoMdAddCircleOutline className="table-svg" />
-                        <p>No Elements to show</p>
-                    </div>
-                    )}
+                        ) : (
+                        <div className="optional-message"> 
+                            <IoIcons.IoMdAddCircleOutline className="table-svg" onClick={handleClick} />
+                            <p>No Elements to show. Please add an element</p>
+                        </div>
+                        )}
                 </div>
             </div>
         </div>

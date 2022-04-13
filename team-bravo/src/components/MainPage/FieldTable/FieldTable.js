@@ -2,6 +2,8 @@ import React from 'react'
 import './FieldTable.css';
 import '../MainPage.css';
 import TableRow from './TableRow';
+import * as IoIcons from "react-icons/io";
+
 
 function FieldTable({data}) {
   return (
@@ -16,8 +18,8 @@ function FieldTable({data}) {
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
-          <TableRow data={data}/>
+      <tbody className='conditional-body'>
+        <TableRow data={data}/>
       </tbody>
     </table>
   </div>
