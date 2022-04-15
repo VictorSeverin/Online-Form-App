@@ -25,6 +25,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     setLabel('')
     setPlaceholder('')
     setRequired(false)
+    handleClose()
   }
   const handleRadioButton = (option) =>{
     setRadioButtonOptions(...radioButtonOptions,option)
