@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route, Routes} from "react-router-dom"
 import service from './services/service';
 import FinalForm from './components/Form/FinalForm'
+import FieldContextProvider from './components/Context/FieldContext';
 function App() {
   const [title,setTitle] = useState('');
   const [finalElems,setFinalElems] = useState([])
@@ -59,14 +60,16 @@ function App() {
           exact 
           element={           
             <>
-              <Sidebar handleShow={handleShow} />
-              <MainPage data={finalElems} />
-              <ModalComp 
-                handleClose={handleClose}
-                handleShow={handleShow}
-                show={show}
-                onAdd={addElem}
-                title={title} />
+              <FieldContextProvider>
+                <Sidebar handleShow={handleShow} />
+                <MainPage data={finalElems} />
+                <ModalComp 
+                  handleClose={handleClose}
+                  handleShow={handleShow}
+                  show={show}
+                  onAdd={addElem}
+                  title={title} />
+              </FieldContextProvider>
             </>
             } />
             <Route path='/form' element={<FinalForm data={finalElems} />} />
