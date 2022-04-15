@@ -37,7 +37,7 @@ function FieldContextProvider(props) {
     }
 
     return (
-        <FieldContext.Provider>
+        <FieldContext.Provider value={{finalElems, addElem}}>
             {props.children}
         </FieldContext.Provider>
     )
