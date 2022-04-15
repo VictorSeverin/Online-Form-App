@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import FieldTable from "./FieldTable/FieldTable"
 import * as IoIcons from "react-icons/io";
 import {useState} from "react"
 import { Form } from 'react-bootstrap'
-function MainPage({data}) {
-    const [elems,setElems] = useState([data])
+import { FieldContext } from "../Context/FieldContext";
+
+function MainPage() {
+    const {finalElems} = useContext(FieldContext)
+
     const [formTitle, setFormTitle] = useState()
     const [formDesc, setFormDesc] = useState()
-    const handleClick = (data) =>{
+    const handleClick = () =>{
     }
     return(
         <div className="mainpage">
@@ -26,8 +29,8 @@ function MainPage({data}) {
             </div>
             <div className="table-wrapper">
                 <div className="table-component">
-                    {data.length > 0 ? (
-                        <FieldTable data={data}/>
+                    {finalElems.length > 0 ? (
+                        <FieldTable />
                         ) : (
                         <div className="optional-message"> 
                             <IoIcons.IoMdAddCircleOutline className="table-svg" onClick={handleClick} />

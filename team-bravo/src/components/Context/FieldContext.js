@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import service from "../../services/service";
 
-const FieldContext = createContext();
+export const FieldContext = createContext();
 
 function FieldContextProvider(props) {
 

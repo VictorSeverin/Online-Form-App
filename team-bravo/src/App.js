@@ -41,7 +41,7 @@ function App() {
                   title={title} />
               </>
               } />
-              <Route path='/form' element={<FinalForm data={finalElems} />} />
+              <Route path='/form' element={<FinalForm />} />
 
             </Routes>
         </div>

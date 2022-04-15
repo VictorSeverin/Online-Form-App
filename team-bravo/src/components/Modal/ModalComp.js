@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { Button, ModalDialog, ModalFooter, DropdownButton, Dropdown} from 'react-bootstrap';
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { FieldContext } from '../Context/FieldContext';
 
 export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {   
   const [label,setLabel] = useState('')
   const [placeholder,setPlaceholder] = useState('')
   const [required,setRequired] = useState(false)
   const [radioButtonOptions,setRadioButtonOptions] = useState([])
+
+  const {addElem} = useContext(FieldContext)
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -20,7 +23,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
 
-    onAdd({ title, label, placeholder, required ,radioButtonOptions})
+    addElem({ title, label, placeholder, required ,radioButtonOptions})
 
     setLabel('')
     setPlaceholder('')

@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { FieldContext } from '../Context/FieldContext'
 
 
-export default function FinalForm({data}) {
+export default function FinalForm() {
+
+    const {finalElems} = useContext(FieldContext)
+
     function handleClick(){
-        console.log(data)
+        console.log(finalElems)
     }
   return (
     <div>
-        {data.map((item) => {
+        {finalElems.map((item) => {
             return(
                 <li> {item.title + " | Label: " + item.label}</li>
             )

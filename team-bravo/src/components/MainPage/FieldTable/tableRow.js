@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form } from 'react-bootstrap'
 import {useState} from "react"
 import * as MdIcons from "react-icons/md";
+import { FieldContext } from '../../Context/FieldContext';
 
 
-function TableRow({data}) {
-  const [checked, setChecked] = useState(data.required);
+function TableRow() {
+  const {finalElems} = useContext(FieldContext)
+  const [checked, setChecked] = useState(finalElems.required);
   
   const handleClick = () =>{
-    console.log(data)
+    console.log(finalElems)
   }
 
-  return data.map((elem, index) =>
+  return finalElems.map((elem, index) =>
     <tr key={index}>
       <td onClick={handleClick}>{elem.title}</td>
       <td>{elem.label}</td>

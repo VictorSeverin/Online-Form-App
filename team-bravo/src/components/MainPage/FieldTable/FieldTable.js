@@ -5,7 +5,7 @@ import TableRow from './tableRow';
 import * as IoIcons from "react-icons/io";
 import { Link } from 'react-router-dom'
 
-function FieldTable({data}) {
+function FieldTable() {
   return (
     <div className='table-wrapper'>
     <table className='boottable'>
@@ -19,7 +19,7 @@ function FieldTable({data}) {
         </tr>
       </thead>
       <tbody className='conditional-body'>
-        <TableRow data={data}/>
+        <TableRow />
       </tbody>
       <Link to="/form">
         <button className='btn btn-primary save-btn'>Save</button>
