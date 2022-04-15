@@ -1,7 +1,7 @@
 import React from 'react'
 import './FieldTable.css';
 import '../MainPage.css';
-import TableRow from './TableRow';
+import TableRow from './tableRow';
 import * as IoIcons from "react-icons/io";
 import { Link } from 'react-router-dom'
 
