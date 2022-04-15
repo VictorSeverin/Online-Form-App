@@ -8,9 +8,9 @@ import ModalComp from './components/Modal/ModalComp';
 import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
 import { SidebarData } from './components/Sidebar/Sidebardata';
 import { useEffect } from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route, Routes} from "react-router-dom"
 import service from './services/service';
-
+import FinalForm from './components/Form/FinalForm'
 function App() {
   const [title,setTitle] = useState('');
   const [finalElems,setFinalElems] = useState([])
@@ -50,17 +50,30 @@ function App() {
     })
   }
   return (
+    <Router>
       <div className="App">
         {/* <Sidebar addElement={addElement} /> */}
-          <Sidebar handleShow={handleShow} />
-          <MainPage data={finalElems} />
-          <ModalComp 
-            handleClose={handleClose}
-            handleShow={handleShow}
-            show={show}
-            onAdd={addElem}
-            title={title} />
+        <Routes>
+          <Route 
+          path="/"
+          exact 
+          element={           
+            <>
+              <Sidebar handleShow={handleShow} />
+              <MainPage data={finalElems} />
+              <ModalComp 
+                handleClose={handleClose}
+                handleShow={handleShow}
+                show={show}
+                onAdd={addElem}
+                title={title} />
+            </>
+            } />
+            <Route path='/form' element={<FinalForm data={finalElems} />} />
+
+          </Routes>
       </div>
+    </Router>
   );
 }
 

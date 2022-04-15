@@ -12,10 +12,9 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (!label) {
-      alert('Please add a label')
-      return
-    }
+    // if (!label) {
+    //   alert('Please add a label')
+    //   return
     // if (!placeholder) {
     //   alert('Please add a placeholder')
     //   return
