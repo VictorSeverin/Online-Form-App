@@ -1,4 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import service from "../../services/service";
 
 const FieldContext = createContext();
 
@@ -25,7 +26,6 @@ function FieldContextProvider(props) {
     }
     
     const addElem = (elem) => {
-        setShow(false)
         setFinalElems([...finalElems, elem])
         console.log(elem)
         
