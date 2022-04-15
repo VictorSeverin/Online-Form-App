@@ -7,6 +7,8 @@ import { FieldContext } from '../../Context/FieldContext';
 
 function TableRow() {
   const {finalElems} = useContext(FieldContext)
+  const {deleteElem} = useContext(FieldContext)
+
   const [checked, setChecked] = useState(finalElems.required);
   
   const handleClick = () =>{
@@ -25,7 +27,7 @@ function TableRow() {
       </td>
       <td>
         <button className='btn btn-primary'>Edit</button>
-        <MdIcons.MdDelete className='btn-outline-danger deleteBtn'/>
+        <MdIcons.MdDelete onClick={() => deleteElem(index)} className='btn-outline-danger deleteBtn'/>
       </td>
 
     </tr>

@@ -36,8 +36,14 @@ function FieldContextProvider(props) {
         })
     }
 
+    const deleteElem = (index) => {
+      const newElems = [...finalElems.slice(0,index), ...finalElems.slice(index+1)]
+      setFinalElems(newElems)
+      // TOOD: add server functionality as well
+    }
+
     return (
-        <FieldContext.Provider value={{finalElems, addElem}}>
+        <FieldContext.Provider value={{finalElems, addElem, deleteElem}}>
             {props.children}
         </FieldContext.Provider>
     )
