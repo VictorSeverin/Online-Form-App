@@ -42,7 +42,9 @@ function FieldContextProvider(props) {
       // TOOD: add server functionality as well
     }
 
-    const editElem = (index) => {
+    const editElem = (index, newElem) => {
+      const newElems = [...finalElems.slice(0,index), newElem, ...finalElems.slice(index+1)]
+      setFinalElems(newElems)
       console.log("Edit: " + index)
     }
 
