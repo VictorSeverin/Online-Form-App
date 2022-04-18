@@ -42,8 +42,12 @@ function FieldContextProvider(props) {
       // TOOD: add server functionality as well
     }
 
+    const editElem = (index) => {
+      console.log("Edit: " + index)
+    }
+
     return (
-        <FieldContext.Provider value={{finalElems, addElem, deleteElem}}>
+        <FieldContext.Provider value={{finalElems, addElem, deleteElem, editElem}}>
             {props.children}
         </FieldContext.Provider>
     )
