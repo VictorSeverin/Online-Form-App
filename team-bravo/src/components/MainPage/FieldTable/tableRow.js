@@ -33,7 +33,7 @@ function TableRow({element, i}) {
 
   return (
     <>
-      <td onClick={() => console.log(i)}>{element.title}</td>
+      <td onClick={() => console.log(element)}>{element.title}</td>
       <td>{element.label}</td>
       <td>{element.placeholder}</td>
       <td>

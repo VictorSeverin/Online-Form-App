@@ -28,10 +28,13 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     setLabel('')
     setPlaceholder('')
     setRequired(false)
+    setRadioButtonOptions([])
     handleClose()
   }
-  const handleRadioButton = (option) =>{
-    setRadioButtonOptions(...radioButtonOptions,option)
+  const handleRadioButton = (option, i) =>{
+    let newArr = [...radioButtonOptions]
+    newArr[i] = option
+    setRadioButtonOptions(newArr)
     console.log(radioButtonOptions)
   }
   return (
@@ -129,9 +132,9 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Options</Form.Label>
-                  <Form.Control className='mb-2' type="text" placeholder="Option 1" onChange={(e) => setRadioButtonOptions(...radioButtonOptions,e.target.value)}/>
-                  <Form.Control className='mb-2' type="text" placeholder="Option 2" onChange={(e) => setRadioButtonOptions(...radioButtonOptions,e.target.value)}/>
-                  <Form.Control className='mb-2' type="text" placeholder="Option 3" onChange={(e) => setRadioButtonOptions(...radioButtonOptions,e.target.value)}/>
+                  <Form.Control className='mb-2' type="text" placeholder="Option 1" onChange={(e) => handleRadioButton(e.target.value, 0)}/>
+                  <Form.Control className='mb-2' type="text" placeholder="Option 2" onChange={(e) => handleRadioButton(e.target.value, 1)}/>
+                  <Form.Control className='mb-2' type="text" placeholder="Option 3" onChange={(e) => handleRadioButton(e.target.value, 2)}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
@@ -158,9 +161,9 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Options</Form.Label>
-                <Form.Control className='mb-2' type="text" placeholder="Option 1" onChange={(e) => handleRadioButton(e.target.value)}/>
-                <Form.Control className='mb-2' type="text" placeholder="Option 2" onChange={(e) => handleRadioButton(e.target.value)}/>
-                <Form.Control className='mb-2' type="text" placeholder="Option 3" onChange={(e) => handleRadioButton(e.target.value)}/>
+                <Form.Control className='mb-2' type="text" placeholder="Option 1" onChange={(e) => handleRadioButton(e.target.value, 0)}/>
+                <Form.Control className='mb-2' type="text" placeholder="Option 2" onChange={(e) => handleRadioButton(e.target.value, 1)}/>
+                <Form.Control className='mb-2' type="text" placeholder="Option 3" onChange={(e) => handleRadioButton(e.target.value, 2)}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />

@@ -10,6 +10,7 @@ function EditField({element, index}) {
     const [label, setLabel] = useState(element.label)
     const [placeholder, setPlaceholder] = useState(element.placeholder)
     const [required, setRequired] = useState(element.required)
+    const [radioButtonOptions, setRadioButtonOptions] = useState(element.radioButtonOptions)
 
     const [showPlaceholder, setShowPlaceholder] = useState(() => {
         switch (title) {
@@ -53,8 +54,30 @@ function EditField({element, index}) {
                 break
         }
     })
+    
+    const [showRadioButtons, setShowRadioButtonOptions] = useState(() => {
+        switch (title) {
+            case 'Radio Button':
+                return true
+                break
+            case 'Select Menu':
+                return true
+                break
+            default:
+                return false
+        }
+    }
 
-    const updatedField = {title, label, placeholder, required}
+    )
+    console.log(radioButtonOptions)
+
+    const updatedField = {title, label, placeholder, required, radioButtonOptions}
+
+    const handleRadioButton = (option, i) =>{
+        let newArr = [...radioButtonOptions]
+        newArr[i] = option
+        setRadioButtonOptions(newArr)
+      }
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -80,6 +103,12 @@ function EditField({element, index}) {
                         value={placeholder}
                         onChange={(e) => setPlaceholder(e.target.value)} />
                 </Form.Group>}
+            {showRadioButtons && <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Options</Form.Label>
+                <Form.Control className="mb-2" type="text" placeholder="Option 1" value={radioButtonOptions[0]} onChange={(e) => handleRadioButton(e.target.value, 0)} />
+                <Form.Control className="mb-2" type="text" placeholder="Option 2" value={radioButtonOptions[1]} onChange={(e) => handleRadioButton(e.target.value, 1)}/>
+                <Form.Control className="mb-2" type="text" placeholder="Option 3" value={radioButtonOptions[2]} onChange={(e) => handleRadioButton(e.target.value, 2)}/>
+            </Form.Group>}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check 
                     type="checkbox" 
