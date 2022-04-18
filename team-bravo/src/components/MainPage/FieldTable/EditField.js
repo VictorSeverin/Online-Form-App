@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { FieldContext } from "../../Context/FieldContext";
 
 function EditField({element, index}) {
@@ -29,6 +29,15 @@ function EditField({element, index}) {
                     value={label}
                     onChange={(e) => setLabel(e.target.value)} />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check 
+                    type="checkbox" 
+                    label="Required" 
+                    checked={required}
+                    onChange={(e) => setRequired(!required)} />
+            </Form.Group>
+            
+            <Button type="submit" variant="primary">Save Changes</Button>
         </Form>
     )
 }
