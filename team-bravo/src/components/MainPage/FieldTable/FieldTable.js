@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './FieldTable.css';
 import '../MainPage.css';
 import TableRow from './TableRow';
 import * as IoIcons from "react-icons/io";
 import { Link } from 'react-router-dom'
+import { FieldContext } from '../../Context/FieldContext';
 
-function FieldTable({data}) {
+function FieldTable() {
+
+  const {finalElems} = useContext(FieldContext)
+
   return (
     <div className='table-wrapper'>
     <table className='boottable'>
@@ -19,7 +23,11 @@ function FieldTable({data}) {
         </tr>
       </thead>
       <tbody className='conditional-body'>
-        <TableRow data={data}/>
+        {finalElems.map((elem,index) =>
+          <tr key={index}>
+            <TableRow element={elem} i={index} />
+          </tr>
+        )}
       </tbody>
       <Link to="/form">
         <button className='btn btn-primary save-btn'>Save</button>
