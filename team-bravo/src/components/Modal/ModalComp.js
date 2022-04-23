@@ -10,6 +10,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
   const [placeholder,setPlaceholder] = useState('')
   const [required,setRequired] = useState(false)
   const [radioButtonOptions,setRadioButtonOptions] = useState([])
+  const [currencyOption,setCurrencyOption] = useState("$")
 
   const {addElem} = useContext(FieldContext)
 
@@ -23,12 +24,13 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
 
-    addElem({ title, label, placeholder, required ,radioButtonOptions})
+    addElem({ title, label, placeholder, required ,radioButtonOptions,currencyOption})
 
     setLabel('')
     setPlaceholder('')
     setRequired(false)
     setRadioButtonOptions([])
+    setCurrencyOption('')
     handleClose()
   }
   const handleRadioButton = (option, i) =>{
@@ -274,15 +276,14 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
               <Form.Control type="text" placeholder="Enter placeholder" onChange={(e) => setPlaceholder(e.target.value)}/>
             </Form.Group>
             <DropdownButton className='pd-10' id="dropdown-basic-button" title="Dropdown button">
-              <Dropdown.Item >Dollars</Dropdown.Item>
-              <Dropdown.Item >Euros</Dropdown.Item>
-              <Dropdown.Item >Pesos</Dropdown.Item>
+              <Dropdown.Item onClick={() => setCurrencyOption("$")}>Dollars</Dropdown.Item>
+              <Dropdown.Item onClick={() => setCurrencyOption("€")}>Euros</Dropdown.Item>
             </DropdownButton>
           <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
             </Form.Group>
 
-            <Button type="submit" variant="primary"  >
+            <Button type="submit" variant="primary"  onClick={handleClose}>
                 Save Changes
               </Button>
           </Form>
@@ -344,28 +345,6 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
       </Modal>
     )
 
-        case 'Password':
-          return(
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Add {title}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-              <Form onSubmit = {onSubmit}> 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Label</Form.Label>
-                  <Form.Control type="text" placeholder="Enter label" onChange={(e) => setLabel(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
-                  </Form.Group>    
-                <Button type="submit" variant="primary"  >
-                    Save Changes
-                  </Button>
-              </Form>
-              </Modal.Body>
-          </Modal>
-          )
           case 'Toggle':
             return(
               <Modal show={show} onHide={handleClose}>
