@@ -7,6 +7,7 @@ export default function FinalForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event);
+    console.log(finalElems);
   };
   const handleClick = () => {
     console.log(finalElems);
@@ -29,7 +30,7 @@ export default function FinalForm() {
                           label={item.placeholder}
                           className="mb-3 m-10"
                         >
-                          <Form.Control onClick={handleClick} type="text" />
+                          <Form.Control onClick={handleClick} type="text" size="lg"/>
                         </FloatingLabel>
                       </>
                     );
@@ -70,7 +71,7 @@ export default function FinalForm() {
                       <>
                         <fieldset>
                           <Form.Group as={Row} className="mb-3">
-                            <Form.Label as="legend" column sm={2}>
+                            <Form.Label row sm={2}>
                               {item.label}
                             </Form.Label>
                             <Col sm={10}>
@@ -134,7 +135,7 @@ export default function FinalForm() {
                   case "Password":
                       return(
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <Form.Label column sm="2">
+                            <Form.Label row sm="2">
                             {item.label}
                             </Form.Label>
                             <Col sm="10">
@@ -156,8 +157,8 @@ export default function FinalForm() {
                   case "Currency": 
                   return(
                     <Col xs="auto">
-                        <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-                        {item.label}
+                        <Form.Label htmlFor="inlineFormInputGroup" >
+                            {item.label}
                         </Form.Label>
                         <InputGroup className="mb-2">
                         {item.currencyOption === "$" ? <InputGroup.Text>$</InputGroup.Text> : <InputGroup.Text>€</InputGroup.Text>}
@@ -165,12 +166,40 @@ export default function FinalForm() {
                         </InputGroup>
                     </Col>
                   )
+                  case "Toggle":
+                      return(
+                        <Form.Check 
+                        type="switch"
+                        id="custom-switch"
+                        label={item.label}
+                        />
+                      )
+                  case "File Upload":
+                      return(
+                        <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label column >{item.label}</Form.Label>
+                        <Form.Control type="file" />
+                      </Form.Group>
+                      )
+                case "Color Picker":
+                    return(
+                        <>
+                        <Form.Label htmlFor="exampleColorInput" as="column" column>{item.label}</Form.Label>
+                        
+                        <Form.Control
+                          type="color"
+                          id="exampleColorInput"
+                          defaultValue="#563d7c"
+                          title="Choose your color"
+                        />
+                        </>
+              )
                 }
               })()}
             </>
           );
         })}
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" onClick={handleSubmit}>
           Submit
         </Button>
         {/* //end of mapping */}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import { Button, ModalDialog, ModalFooter, DropdownButton, Dropdown} from 'react-bootstrap';
+import { Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { FieldContext } from '../Context/FieldContext';
@@ -37,7 +37,6 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     let newArr = [...radioButtonOptions]
     newArr[i] = option
     setRadioButtonOptions(newArr)
-    console.log(radioButtonOptions)
   }
   return (
       <>
@@ -275,11 +274,11 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
               <Form.Label>Placeholder</Form.Label>
               <Form.Control type="text" placeholder="Enter placeholder" onChange={(e) => setPlaceholder(e.target.value)}/>
             </Form.Group>
-            <DropdownButton className='pd-10' id="dropdown-basic-button" title="Dropdown button">
+            <DropdownButton className='mb-10' id="dropdown-basic-button" title="Currency Type" style={{padding: '15px 0'}}>
               <Dropdown.Item onClick={() => setCurrencyOption("$")}>Dollars</Dropdown.Item>
               <Dropdown.Item onClick={() => setCurrencyOption("€")}>Euros</Dropdown.Item>
             </DropdownButton>
-          <Form.Group controlId="formBasicCheckbox">
+          <Form.Group controlId="formBasicCheckbox" style={{padding: '10px 0'}} >
               <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
             </Form.Group>
 
@@ -367,7 +366,53 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
                 </Form>
                 </Modal.Body>
             </Modal>
+          )
+          case 'File Upload':
+            return(
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add {title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form onSubmit = {onSubmit}> 
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Label</Form.Label>
+                    <Form.Control type="text" placeholder="Enter label" onChange={(e) => setLabel(e.target.value)}/>
+                  </Form.Group>  
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                      <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
+                    </Form.Group>  
+                  <Button type="submit" variant="primary"  >
+                      Save Changes
+                    </Button>
+                  
+                </Form>
+                </Modal.Body>
+            </Modal>
           ) 
+          case 'Color Picker':
+            return(
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add {title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form onSubmit = {onSubmit}> 
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Label</Form.Label>
+                    <Form.Control type="text" placeholder="Enter label" onChange={(e) => setLabel(e.target.value)}/>
+                  </Form.Group>  
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                      <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
+                    </Form.Group>  
+                  <Button type="submit" variant="primary"  >
+                      Save Changes
+                    </Button>
+                  
+                </Form>
+                </Modal.Body>
+            </Modal>
+          )
         }
       }
       )()} 

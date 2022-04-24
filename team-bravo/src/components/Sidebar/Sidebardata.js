@@ -37,12 +37,6 @@ export const SidebarData = [
         label: ''
     },
     {
-        id: '6',
-        title: 'Email Confirm',
-        placeholder: '',
-        label: ''
-    },
-    {
         id: '7',
         title: 'Number',
         placeholder: '',
@@ -55,12 +49,6 @@ export const SidebarData = [
         label: ''
     },
     {
-        id: '9',
-        title: 'Password Confirm',
-        placeholder: '',
-        label: ''
-    },
-    {
         id: '10',
         title: 'Currency',
         placeholder: '',
@@ -69,6 +57,18 @@ export const SidebarData = [
     {
         id: '11',
         title: 'Toggle',
+        placeholder: '',
+        label: ''
+    },
+    {
+        id: '12',
+        title: 'File Upload',
+        placeholder: '',
+        label: ''
+    },
+    {
+        id: '13',
+        title: 'Color Picker',
         placeholder: '',
         label: ''
     }
