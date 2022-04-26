@@ -14,6 +14,7 @@ export default function FinalForm() {
   };
   return (
     <div>
+      // Start of form tag
       <Form onSubmit={handleSubmit}>
         {finalElems.map((item) => {
           return (
@@ -202,8 +203,9 @@ export default function FinalForm() {
         <Button type="submit" variant="primary" onClick={handleSubmit}>
           Submit
         </Button>
-        {/* //end of mapping */}
+        
       </Form>
+      /* //end of Form tag */
     </div>
   );
 }
