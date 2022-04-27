@@ -14,55 +14,20 @@ function EditField({element, index}) {
 
     const [showPlaceholder, setShowPlaceholder] = useState(() => {
         switch (title) {
-            case 'Input':
-                return true
-                break
-            case 'Textarea':
-                return true
-                break
             case 'Check Box':
-                return false
-                break
             case 'Radio Button':
-                return false
-                break
             case 'Select Menu':
-                return false
-                break
-            case 'Email':
-                return true
-                break
-            case 'Email Confirm':
-                return true
-                break
-            case 'Number':
-                return true
-                break
-            case 'Password':
-                return true
-                break
-            case 'Password Confirm':
-                return true
-                break
-            case 'Currency':
-                return true
-                break
             case 'Toggle':
                 return false
-                break
             default:
-                break
+                return true
         }
     })
     
     const [showRadioButtons, setShowRadioButtonOptions] = useState(() => {
         switch (title) {
             case 'Radio Button':
-                return true
-                break
             case 'Select Menu':
-                return true
-                break
             case 'Check Box':
                 return true
             default:
