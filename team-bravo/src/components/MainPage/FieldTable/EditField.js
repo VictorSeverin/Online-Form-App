@@ -18,6 +18,8 @@ function EditField({element, index}) {
             case 'Radio Button':
             case 'Select Menu':
             case 'Toggle':
+            case 'File Upload':
+            case 'Color Picker':
                 return false
             default:
                 return true
