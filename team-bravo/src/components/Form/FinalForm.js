@@ -1,21 +1,32 @@
 import { Form, Button, FloatingLabel, Check, Row, Col,InputGroup,FormControl} from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import { FieldContext } from "../Context/FieldContext";
-
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
+import '../Form/FinalForm.css';
 export default function FinalForm() {
   const { finalElems } = useContext(FieldContext);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(event);
-    console.log(finalElems);
-  };
+  const { register, handleSubmit,formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
+
   const handleClick = () => {
     console.log(finalElems);
   };
+  const isValidEmail = email =>
+  // eslint-disable-next-line no-useless-escape
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email
+  );
+  const handleEmailValidation = email => {
+    const isValid = isValidEmail(email);
+    const validityChanged =
+      (errors.email && isValid) || (!errors.email && !isValid);
+    return isValid;
+  };
   return (
     <div>
-      // Start of form tag
-      <Form onSubmit={handleSubmit}>
+      {/* Start of form tag */}
+      <Form onSubmit={handleSubmit(onSubmit)}>
         {finalElems.map((item) => {
           return (
             <>
@@ -31,7 +42,10 @@ export default function FinalForm() {
                           label={item.placeholder}
                           className="mb-3 m-10"
                         >
-                          <Form.Control onClick={handleClick} type="text" size="lg"/>
+                          <Form.Control type="text" size="lg"
+                          {...register(`${item.placeholder}`, { required: item.required, maxLength: 20 })}
+                          />
+                          {/* {errors && <span style={{color:"green"}}>This field is required</span>} */}
                         </FloatingLabel>
                       </>
                     );
@@ -43,26 +57,30 @@ export default function FinalForm() {
                           controlId="floatingTextarea2"
                           label={item.label}
                         >
-                          <Form.Control as="textarea" />
+                          <Form.Control as="textarea" size="lg"
+                          {...register(`${item.placeholder}`, { required: item.required})}
+                          />
+                          {errors && <span style={{color:"green"}}>This field is required</span>}
                         </FloatingLabel>
                       </>
                     );
                   // To be changed to SelectMenuOptions
+                  //Label must be required
                   case "Select Menu":
                     return (
                       <>
                         <Form.Label>{item.label}</Form.Label>
-                        <Form.Select aria-label="Default select example">
+                        <Form.Select aria-label="Default select example" {...register(`${item.label}`, { required: item.required})} >
                           <option>Select One</option>
-                          <option value="1">
+                          {item.radioButtonOptions[0] && <option value={item.radioButtonOptions[0]}>
                             {item.radioButtonOptions[0]}
-                          </option>
-                          <option value="2">
+                          </option>}
+                          {item.radioButtonOptions[1] && <option value={item.radioButtonOptions[1]}>
                             {item.radioButtonOptions[1]}
-                          </option>
-                          <option value="3">
+                          </option>}
+                          {item.radioButtonOptions[2] && <option value={item.radioButtonOptions[2]}>
                             {item.radioButtonOptions[2]}
-                          </option>
+                          </option>}
                         </Form.Select>
                       </>
                     );
@@ -71,7 +89,7 @@ export default function FinalForm() {
                     return (
                       <>
                         <fieldset>
-                          <Form.Group as={Row} className="mb-3">
+                          <Form.Group as={Row} className="mb-3" {...register(`${item.label}`, { required: item.required})}>
                             <Form.Label row sm={2}>
                               {item.label}
                             </Form.Label>
@@ -82,6 +100,8 @@ export default function FinalForm() {
                                   label={item.radioButtonOptions[0]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios1"
+                                  value={item.radioButtonOptions[0]}
+                                  {...register(`${item.label}`, { required: item.required})}
                                 />
                               )}
                               {item.radioButtonOptions[1] && (
@@ -90,6 +110,8 @@ export default function FinalForm() {
                                   label={item.radioButtonOptions[1]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios2"
+                                  value={item.radioButtonOptions[1]}
+                                  {...register(`${item.label}`, { required: item.required})}
                                 />
                               )}
                               {item.radioButtonOptions[2] && (
@@ -98,6 +120,8 @@ export default function FinalForm() {
                                   label={item.radioButtonOptions[2]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios3"
+                                  value={item.radioButtonOptions[2]}
+                                  {...register(`${item.label}`, { required: item.required})}
                                 />
                               )}
                             </Col>
@@ -115,7 +139,9 @@ export default function FinalForm() {
                           label="Email"
                           className="mb-3"
                         >
-                          <Form.Control onClick={handleClick} type="text" />
+                          <Form.Control onClick={handleClick} type="text" 
+                          {...register(`${item.label}`, { required: item.required,validate: handleEmailValidation})}/>
+                          <ErrorMessage errors={errors} name="email" message="This is required" />
                         </FloatingLabel>
                       </>
                     );
@@ -140,7 +166,9 @@ export default function FinalForm() {
                             {item.label}
                             </Form.Label>
                             <Col sm="10">
-                            <Form.Control type="password" placeholder={item.placeholder} />
+                            <Form.Control type="password" placeholder={item.placeholder} 
+                            {...register(`${item.label}`, { required: item.required})}
+                            />
                             </Col>
                         </Form.Group>
                       )
@@ -163,7 +191,9 @@ export default function FinalForm() {
                         </Form.Label>
                         <InputGroup className="mb-2">
                         {item.currencyOption === "$" ? <InputGroup.Text>$</InputGroup.Text> : <InputGroup.Text>€</InputGroup.Text>}
-                        <FormControl id="inlineFormInputGroup" placeholder={item.placeholder} />
+                        <FormControl id="inlineFormInputGroup" placeholder={item.placeholder}
+                        {...register(`${item.label}`, { required: item.required})}
+                        />
                         </InputGroup>
                     </Col>
                   )
@@ -173,13 +203,16 @@ export default function FinalForm() {
                         type="switch"
                         id="custom-switch"
                         label={item.label}
+                        {...register(`${item.label}`, { required: false})}
                         />
                       )
                   case "File Upload":
                       return(
                         <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label column >{item.label}</Form.Label>
-                        <Form.Control type="file" />
+                        <Form.Control type="file" 
+                        {...register(`${item.label}`, { required: item.required})}
+                        />
                       </Form.Group>
                       )
                 case "Color Picker":
@@ -192,6 +225,7 @@ export default function FinalForm() {
                           id="exampleColorInput"
                           defaultValue="#563d7c"
                           title="Choose your color"
+                          {...register(`${item.label}`, { required: item.required})}
                         />
                         </>
               )
@@ -205,7 +239,7 @@ export default function FinalForm() {
         </Button>
         
       </Form>
-      /* //end of Form tag */
+      {/* end of Form tag */}
     </div>
   );
 }

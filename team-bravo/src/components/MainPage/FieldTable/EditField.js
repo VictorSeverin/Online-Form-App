@@ -69,7 +69,6 @@ function EditField({element, index}) {
     }
 
     )
-    console.log(radioButtonOptions)
 
     const updatedField = {title, label, placeholder, required, radioButtonOptions}
 
@@ -82,7 +81,6 @@ function EditField({element, index}) {
     const onSubmit = (e) => {
         e.preventDefault()
         editElem(index, updatedField)
-        console.log("submitted" + index)
     }
 
     return (
