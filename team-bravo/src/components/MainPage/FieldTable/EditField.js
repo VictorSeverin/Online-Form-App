@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import { FieldContext } from "../../Context/FieldContext";
 
 function EditField({element, index}) {
@@ -11,6 +11,7 @@ function EditField({element, index}) {
     const [placeholder, setPlaceholder] = useState(element.placeholder)
     const [required, setRequired] = useState(element.required)
     const [radioButtonOptions, setRadioButtonOptions] = useState(element.radioButtonOptions)
+    const [currencyOption, setCurrencyOption] = useState(element.currencyOption)
 
     const [showPlaceholder, setShowPlaceholder] = useState(() => {
         switch (title) {
@@ -35,11 +36,18 @@ function EditField({element, index}) {
             default:
                 return false
         }
-    }
+    })
 
-    )
+    const [showCurrencyOptions, setShowCurrencyOptions] = useState(() => {
+        switch (title) {
+            case 'Currency':
+                return true
+            default:
+                return false
+        }
+    })
 
-    const updatedField = {title, label, placeholder, required, radioButtonOptions}
+    const updatedField = {title, label, placeholder, required, radioButtonOptions, currencyOption}
 
     const handleRadioButton = (option, i) =>{
         let newArr = [...radioButtonOptions]
@@ -76,6 +84,10 @@ function EditField({element, index}) {
                 <Form.Control className="mb-2" type="text" placeholder="Option 2" value={radioButtonOptions[1]} onChange={(e) => handleRadioButton(e.target.value, 1)}/>
                 <Form.Control className="mb-2" type="text" placeholder="Option 3" value={radioButtonOptions[2]} onChange={(e) => handleRadioButton(e.target.value, 2)}/>
             </Form.Group>}
+            {showCurrencyOptions && <DropdownButton className="mb-10" id="dropdown-basic-button" title="Currency Type" style={{padding: '15px 0'}}>
+                <Dropdown.Item onClick={() => setCurrencyOption("$")}>Dollars</Dropdown.Item>
+                <Dropdown.Item onClick={() => setCurrencyOption("€")}>Euros</Dropdown.Item>
+            </DropdownButton>}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check 
                     type="checkbox" 
