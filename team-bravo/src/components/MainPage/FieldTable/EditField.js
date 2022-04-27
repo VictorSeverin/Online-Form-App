@@ -63,6 +63,8 @@ function EditField({element, index}) {
             case 'Select Menu':
                 return true
                 break
+            case 'Check Box':
+                return true
             default:
                 return false
         }
