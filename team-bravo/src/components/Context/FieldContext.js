@@ -6,6 +6,8 @@ export const FieldContext = createContext();
 function FieldContextProvider(props) {
 
     const [finalElems, setFinalElems] = useState([])
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
 
     useEffect(() => {
         const getTasks = async () => {
@@ -23,6 +25,16 @@ function FieldContextProvider(props) {
     
         console.log(data)
         return data
+    }
+
+    const editTitle = (t) => {
+      setTitle(t)
+      console.log("Added title: " + t)
+    }
+    
+    const editDescription = (d) => {
+      setDescription(d)
+      console.log("Added description: " + d)
     }
     
     const addElem = (elem) => {
@@ -48,7 +60,7 @@ function FieldContextProvider(props) {
     }
 
     return (
-        <FieldContext.Provider value={{finalElems, addElem, deleteElem, editElem}}>
+        <FieldContext.Provider value={{finalElems, title, description, editTitle, editDescription, addElem, deleteElem, editElem}}>
             {props.children}
         </FieldContext.Provider>
     )

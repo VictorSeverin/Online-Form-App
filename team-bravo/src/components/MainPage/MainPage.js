@@ -7,9 +7,11 @@ import { FieldContext } from "../Context/FieldContext";
 
 function MainPage() {
     const {finalElems} = useContext(FieldContext)
+    const {editTitle} = useContext(FieldContext)
+    const {title} = useContext(FieldContext)
+    const {editDescription} = useContext(FieldContext)
+    const {description} = useContext(FieldContext)
 
-    const [formTitle, setFormTitle] = useState()
-    const [formDesc, setFormDesc] = useState()
     const handleClick = () =>{
     }
     return(
@@ -19,11 +21,11 @@ function MainPage() {
                 <Form> 
                     <Form.Group className="mb-3 form-info-input" controlId="formBasicEmail">
                         <Form.Label>Form Title</Form.Label>
-                        <Form.Control type="text" size="lg" placeholder="Enter Title" onChange={(e) => setFormTitle(e.target.value)}/>
+                        <Form.Control type="text" size="lg" value={title} placeholder="Enter Title" onChange={(e) => editTitle(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3 form-info-ta" controlId="ControlTextarea1">
                         <Form.Label>Form Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} placeholder="Enter Description" onChange={(e) => setFormDesc(e.target.value)}/>
+                        <Form.Control as="textarea" rows={3} value={description} placeholder="Enter Description" onChange={(e) => editDescription(e.target.value)}/>
                     </Form.Group>
                 </Form>
             </div>
