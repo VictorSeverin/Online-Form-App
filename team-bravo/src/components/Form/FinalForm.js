@@ -7,6 +7,7 @@ import '../Form/FinalForm.css';
 export default function FinalForm() {
   const { finalElems } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();
+  
   const onSubmit = data => console.log(data);
 
   const handleClick = () => {
@@ -43,9 +44,9 @@ export default function FinalForm() {
                           className="mb-3 m-10"
                         >
                           <Form.Control type="text" size="lg"
-                          {...register(`${item.placeholder}`, { required: item.required, maxLength: 20 })}
+                          {...register(`${item.label}`, { required: item.required, maxLength: 20 })}
                           />
-                          {/* {errors && <span style={{color:"green"}}>This field is required</span>} */}
+                          {errors[item.label] && <span style={{color:"green"}}>This field is required</span>}
                         </FloatingLabel>
                       </>
                     );
@@ -60,7 +61,7 @@ export default function FinalForm() {
                           <Form.Control as="textarea" size="lg"
                           {...register(`${item.placeholder}`, { required: item.required})}
                           />
-                          {/* {errors && <span style={{color:"green"}}>This field is required</span>} */}
+                          {errors[`${item.label}`] && <span style={{color:"red"}}>This field is required</span>}
                         </FloatingLabel>
                       </>
                     );
@@ -81,6 +82,7 @@ export default function FinalForm() {
                           {item.radioButtonOptions[2] && <option value={item.radioButtonOptions[2]}>
                             {item.radioButtonOptions[2]}
                           </option>}
+                        {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </Form.Select>
                       </>
                     );
@@ -122,8 +124,9 @@ export default function FinalForm() {
                                   id="formHorizontalRadios3"
                                   value={item.radioButtonOptions[2]}
                                   {...register(`${item.label}`, { required: item.required})}
-                                />
-                              )}
+                                  />
+                                  )}
+                                  {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                             </Col>
                           </Form.Group>
                         </fieldset>
@@ -141,7 +144,7 @@ export default function FinalForm() {
                         >
                           <Form.Control onClick={handleClick} type="text" 
                           {...register(`${item.label}`, { required: item.required,validate: handleEmailValidation})}/>
-                          <ErrorMessage errors={errors} name="email" message="This is required" />
+                          {errors[item.label] && <span style={{color:"red"}}>Please enter a valid email</span>}
                         </FloatingLabel>
                       </>
                     );
@@ -169,6 +172,7 @@ export default function FinalForm() {
                             <Form.Control type="password" placeholder={item.placeholder} 
                             {...register(`${item.label}`, { required: item.required})}
                             />
+                            {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                             </Col>
                         </Form.Group>
                       )
@@ -194,6 +198,7 @@ export default function FinalForm() {
                         <FormControl id="inlineFormInputGroup" placeholder={item.placeholder}
                         {...register(`${item.label}`, { required: item.required})}
                         />
+                        {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </InputGroup>
                     </Col>
                   )
@@ -213,6 +218,7 @@ export default function FinalForm() {
                         <Form.Control type="file" 
                         {...register(`${item.label}`, { required: item.required})}
                         />
+                      {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                       </Form.Group>
                       )
                 case "Color Picker":
@@ -227,6 +233,7 @@ export default function FinalForm() {
                           title="Choose your color"
                           {...register(`${item.label}`, { required: item.required})}
                         />
+                        {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </>
               )
                 }
