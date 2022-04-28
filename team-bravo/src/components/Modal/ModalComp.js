@@ -11,7 +11,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
   const [required,setRequired] = useState(false)
   const [radioButtonOptions,setRadioButtonOptions] = useState([])
   const [currencyOption,setCurrencyOption] = useState("$")
-
+  const [formId,setFormId] = useState(1);
   const {addElem} = useContext(FieldContext)
 
   const onSubmit = (e) => {
@@ -23,8 +23,8 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   alert('Please add a placeholder')
     //   return
     // }
-
-    addElem({ title, label, placeholder, required ,radioButtonOptions,currencyOption})
+    //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
+    addElem({formId,title, label, placeholder, required, radioButtonOptions,currencyOption})
 
     setLabel('')
     setPlaceholder('')

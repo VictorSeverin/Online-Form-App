@@ -11,21 +11,24 @@ function MainPage() {
     const {title} = useContext(FieldContext)
     const {editDescription} = useContext(FieldContext)
     const {description} = useContext(FieldContext)
-
-    const handleClick = () =>{
+    const [Title,setTitle] = useState()
+    const [Description,setDescription] = useState()
+    const handleChange = (e) =>{
+        setTitle(e)
+        editTitle(Title)
     }
     return(
         <div className="mainpage">
-            <h2 onClick={handleClick}>Team Bravo's Web Form Generator</h2>
+            <h2>Team Bravo's Web Form Generator</h2>
             <div className="form-info">
-                <Form> 
+                <Form > 
                     <Form.Group className="mb-3 form-info-input" controlId="formBasicEmail">
                         <Form.Label>Form Title</Form.Label>
-                        <Form.Control type="text" size="lg" value={title} placeholder="Enter Title" onChange={(e) => editTitle(e.target.value)}/>
+                        <Form.Control type="text" size="lg" placeholder="Enter Title" onBlur={(e) => editTitle(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3 form-info-ta" controlId="ControlTextarea1">
                         <Form.Label>Form Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} value={description} placeholder="Enter Description" onChange={(e) => editDescription(e.target.value)}/>
+                        <Form.Control as="textarea" rows={3} value={description} placeholder="Enter Description" onChange={(e) => setDescription(e.target.value)}/>
                     </Form.Group>
                 </Form>
             </div>
@@ -35,7 +38,7 @@ function MainPage() {
                         <FieldTable />
                         ) : (
                         <div className="optional-message"> 
-                            <IoIcons.IoMdAddCircleOutline className="table-svg" onClick={handleClick} />
+                            <IoIcons.IoMdAddCircleOutline className="table-svg" />
                             <p>No Elements to show. Please add an element</p>
                         </div>
                         )}

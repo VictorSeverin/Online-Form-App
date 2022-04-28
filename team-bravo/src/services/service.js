@@ -1,20 +1,34 @@
 import axios from "axios";
 
-const TEAM_BRAVO_API_BASE_URL = 'http://localhost:8080/'
+const TEAM_BRAVO_API_BASE_URL = 'http://localhost:8080/api/v1/'
 class Service {
 
-    getTypes() {
-        return axios.get(TEAM_BRAVO_API_BASE_URL);
+    createForm(form) {
+        axios.post(TEAM_BRAVO_API_BASE_URL + 'forms', form);
+        console.log(form.id);
     }
 
-    createType(type){
-        return axios.post(TEAM_BRAVO_API_BASE_URL, type);
+    getAllForms(){
+        return axios.get(TEAM_BRAVO_API_BASE_URL + 'forms');
     }
 
-    getTypeById(typeId){
-        return axios.get(TEAM_BRAVO_API_BASE_URL + '/' + typeId);
+    updateFormTitle(formId, formDetails){
+        return axios.put(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId, formDetails);
     }
-    
+    updateForm(formId, formDetails){
+        return axios.put(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId, formDetails);
+    }
+
+    addTypeToForm(formId, type){
+        return axios.post(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId + '/types',type )
+    }
+
+    getAllTypesByFormId(formId){
+        return axios.get(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId)
+    }
+    deleteType(formId,typeId){
+        return axios.delete(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId) 
+    }
 }
 
 export default new Service()

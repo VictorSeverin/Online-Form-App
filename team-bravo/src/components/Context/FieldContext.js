@@ -8,9 +8,9 @@ function FieldContextProvider(props) {
     const [finalElems, setFinalElems] = useState([])
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-
+    const [formInfo,setFormInfo] = useState([]) 
     useEffect(() => {
-        const getTasks = async () => {
+          const getTasks = async () => {
           const tasksFromServer = await fetchTasks()
           setFinalElems(tasksFromServer)
         }
@@ -20,16 +20,14 @@ function FieldContextProvider(props) {
     
       // Fetch Tasks
     const fetchTasks = async () => {
-        const res = await fetch('http://localhost:8080/api/v1/types')
+        const res = await fetch('http://localhost:8080/api/v1/forms/3')
         const data = await res.json()
-    
-        console.log(data)
         return data
     }
 
     const editTitle = (t) => {
-      setTitle(t)
       console.log("Added title: " + t)
+      service.updateForm(3,t)
     }
     
     const editDescription = (d) => {
@@ -39,13 +37,13 @@ function FieldContextProvider(props) {
     
     const addElem = (elem) => {
         setFinalElems([...finalElems, elem])
-        console.log(elem)
-        
-        service.createType(elem).then((response) =>{
-          console.log(response.data)
-        }).then(error =>{
-          console.log(error)
-        })
+        // console.log(elem)
+        // //TODO change to dynamic variable
+         service.addTypeToForm(3,elem).then((response) =>{
+           console.log(response.data)
+         }).then(error =>{
+           console.log(error)
+         })
     }
 
     const deleteElem = (index) => {

@@ -10,7 +10,7 @@ export default function FinalForm() {
   const onSubmit = data => console.log(data);
 
   const handleClick = () => {
-    console.log(finalElems);
+    
   };
   const isValidEmail = email =>
   // eslint-disable-next-line no-useless-escape
@@ -60,7 +60,7 @@ export default function FinalForm() {
                           <Form.Control as="textarea" size="lg"
                           {...register(`${item.placeholder}`, { required: item.required})}
                           />
-                          {errors && <span style={{color:"green"}}>This field is required</span>}
+                          {/* {errors && <span style={{color:"green"}}>This field is required</span>} */}
                         </FloatingLabel>
                       </>
                     );
