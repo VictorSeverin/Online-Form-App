@@ -2,11 +2,11 @@ import service from "../../services/service";
 import React, { createContext, useState, useEffect } from "react";
 
 export default function Dashboard() {
-    let name="Title1"
-    let description = "desc1"
-    let id = 1;
+    let name="Jora"
+    let description = "Kardan"
+    let id;
     const [forms,setForms] = useState([]);
-    const handleClick = () =>{
+    const generateForm = () =>{
         service.createForm({id,name,description})
     }
     useEffect(() => {
@@ -29,10 +29,11 @@ export default function Dashboard() {
 
   return (
     <div>
+      <button onClick={generateForm}>Generate Form</button>
       {forms.map((item) =>{
         return(
         <>
-          <h1>{`Form id: ${item.id}`}</h1>
+          <h1 >{`Form id: ${item.id}`}</h1>
           <h2>{`Form title: ${item.name}`}</h2>
         </>
         )

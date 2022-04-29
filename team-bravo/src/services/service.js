@@ -4,8 +4,7 @@ const TEAM_BRAVO_API_BASE_URL = 'http://localhost:8080/api/v1/'
 class Service {
 
     createForm(form) {
-        axios.post(TEAM_BRAVO_API_BASE_URL + 'forms', form);
-        console.log(form.id);
+        return axios.post(TEAM_BRAVO_API_BASE_URL + 'forms',form);
     }
 
     getAllForms(){
