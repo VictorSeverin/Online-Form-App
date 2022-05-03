@@ -10,8 +10,16 @@ export default function FinalForm() {
   
   const onSubmit = data => console.log(data);
 
-  const handleClick = () => {
-    
+  const clearForm = () => {
+    var answer = window.confirm("Are you sure you want to clear ther form?");
+    if (answer) {
+      //some code
+      console.log("yes")
+    }
+    else {
+      //some code
+      console.log("no")
+    }
   };
   const isValidEmail = email =>
   // eslint-disable-next-line no-useless-escape
@@ -147,7 +155,7 @@ export default function FinalForm() {
                           label="Email"
                           className="mb-3"
                         >
-                          <Form.Control onClick={handleClick} type="text" 
+                          <Form.Control type="text" 
                           {...register(`${item.label}`, { required: item.required,validate: handleEmailValidation})}/>
                           {errors[item.label] && <span style={{color:"red"}}>Please enter a valid email</span>}
                         </FloatingLabel>
@@ -163,7 +171,7 @@ export default function FinalForm() {
                           label="Confirm Email"
                           className="mb-3"
                         >
-                          <Form.Control onClick={handleClick} type="text" />
+                          <Form.Control type="text" />
                         </FloatingLabel>
                       </div>
                     );
@@ -260,7 +268,7 @@ export default function FinalForm() {
           <Button type="submit" variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
-          <button className="clear-button" type="submit" onClick={handleSubmit}>
+          <button className="clear-button" type="submit" onClick={clearForm}>
             Clear Form
           </button>
         </div>
