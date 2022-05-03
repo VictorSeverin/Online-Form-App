@@ -1,0 +1,55 @@
+.formWrapper{
+    background: rgb(255,255,255);
+    background: linear-gradient(131deg, rgba(255,255,255,1) 8%, rgba(212,238,238,1) 51%, rgba(255,255,255,1) 90%);
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.form{
+    width: 35%;
+    border: 0px 0px 55px 52px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 30px;
+    background-color: white;
+    
+}
+.formTitleWrapper{
+    background-color: aqua;
+    display: flex;
+    justify-content: space-around;
+    width: 35%;
+    margin: 1.5rem;
+    border: 0px 0px 55px 52px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    background-image: url("./gradient.jpg");
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.formTitleWrapper .formTitle{
+    font-weight: bolder;
+}
+.form-elem{
+    padding: 10px 10px;
+}
+.form-elem .elem-label{
+    font-size: 18px;
+    font-weight: bold;
+}
+.submit{
+    display: flex;
+    justify-content: space-between;
+}
+.submit .clear-button{
+    /* background: rgba(152, 236, 232, 0.801);    
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 20px; */
+    border: none;
+    background-color: white;
+    text-decoration: underline;
+    padding: 10px;
+}

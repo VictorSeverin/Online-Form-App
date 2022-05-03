@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import '../Form/FinalForm.css';
 export default function FinalForm() {
-  const { finalElems } = useContext(FieldContext);
+  const { finalElems,title,description } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();
   
   const onSubmit = data => console.log(data);
@@ -25,9 +25,14 @@ export default function FinalForm() {
     return isValid;
   };
   return (
-    <div>
+    <div className="formWrapper">
+      <div className="formTitleWrapper">
+        <h1 className="formTitle">{title}</h1>
+        <p>{description}</p>
+      </div>
+      
       {/* Start of form tag */}
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)} className="form">
         {finalElems.map((item) => {
           return (
             <>
@@ -35,8 +40,8 @@ export default function FinalForm() {
                 switch (item.title) {
                   case "Input":
                     return (
-                      <>
-                        <Form.Label>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label">{item.label}</Form.Label>
                         <FloatingLabel
                           key={item.title}
                           controlId="floatingInput"
@@ -48,12 +53,12 @@ export default function FinalForm() {
                           />
                           {errors[item.label] && <span style={{color:"green"}}>This field is required</span>}
                         </FloatingLabel>
-                      </>
+                      </div>
                     );
                   case "Textarea":
                     return (
-                      <>
-                        <Form.Label>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label">{item.label}</Form.Label>
                         <FloatingLabel
                           controlId="floatingTextarea2"
                           label={item.label}
@@ -63,14 +68,14 @@ export default function FinalForm() {
                           />
                           {errors[`${item.label}`] && <span style={{color:"red"}}>This field is required</span>}
                         </FloatingLabel>
-                      </>
+                      </div>
                     );
                   // To be changed to SelectMenuOptions
                   //Label must be required
                   case "Select Menu":
                     return (
-                      <>
-                        <Form.Label>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label">{item.label}</Form.Label>
                         <Form.Select aria-label="Default select example" {...register(`${item.label}`, { required: item.required})} >
                           <option>Select One</option>
                           {item.radioButtonOptions[0] && <option value={item.radioButtonOptions[0]}>
@@ -84,15 +89,15 @@ export default function FinalForm() {
                           </option>}
                         {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </Form.Select>
-                      </>
+                      </div>
                     );
                   // To be changed to RadioButtonOptions
                   case "Radio Button":
                     return (
-                      <>
+                      <div className="form-elem">
                         <fieldset>
                           <Form.Group as={Row} className="mb-3" {...register(`${item.label}`, { required: item.required})}>
-                            <Form.Label row sm={2}>
+                            <Form.Label className="elem-label" row sm={2}>
                               {item.label}
                             </Form.Label>
                             <Col sm={10}>
@@ -130,12 +135,12 @@ export default function FinalForm() {
                             </Col>
                           </Form.Group>
                         </fieldset>
-                      </>
+                      </div>
                     );
                   case "Email":
                     return (
-                      <>
-                        <Form.Label>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label">{item.label}</Form.Label>
                         <FloatingLabel
                           key={item.title}
                           controlId="floatingInput"
@@ -146,12 +151,12 @@ export default function FinalForm() {
                           {...register(`${item.label}`, { required: item.required,validate: handleEmailValidation})}/>
                           {errors[item.label] && <span style={{color:"red"}}>Please enter a valid email</span>}
                         </FloatingLabel>
-                      </>
+                      </div>
                     );
                   case "Email Confirm":
                     return (
-                      <>
-                        <Form.Label>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label">{item.label}</Form.Label>
                         <FloatingLabel
                           key={item.title}
                           controlId="floatingInput"
@@ -160,12 +165,13 @@ export default function FinalForm() {
                         >
                           <Form.Control onClick={handleClick} type="text" />
                         </FloatingLabel>
-                      </>
+                      </div>
                     );
                   case "Password":
                       return(
+                        <div className="form-elem">
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <Form.Label row sm="2">
+                            <Form.Label className="elem-label" row sm="2">
                             {item.label}
                             </Form.Label>
                             <Col sm="10">
@@ -175,22 +181,26 @@ export default function FinalForm() {
                             {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                             </Col>
                         </Form.Group>
+                        </div>
                       )
                   case "Password Confirm":
                     return(
+                      <div className="form-elem">
                         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <Form.Label column sm="2">
+                            <Form.Label className="elem-label" column sm="2">
                             {item.label}
                             </Form.Label>
                             <Col sm="10">
                             <Form.Control type="password" placeholder={item.placeholder} />
                             </Col>
                         </Form.Group>
+                        </div>
                     )
                   case "Currency": 
                   return(
+                    <div className="form-elem">
                     <Col xs="auto">
-                        <Form.Label htmlFor="inlineFormInputGroup" >
+                        <Form.Label className="elem-label" htmlFor="inlineFormInputGroup" >
                             {item.label}
                         </Form.Label>
                         <InputGroup className="mb-2">
@@ -201,30 +211,35 @@ export default function FinalForm() {
                         {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </InputGroup>
                     </Col>
+                    </div>
                   )
                   case "Toggle":
                       return(
+                        <div className="form-elem">
                         <Form.Check 
                         type="switch"
                         id="custom-switch"
                         label={item.label}
                         {...register(`${item.label}`, { required: false})}
                         />
+                        </div>
                       )
                   case "File Upload":
                       return(
+                        <div className="form-elem">
                         <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label column >{item.label}</Form.Label>
+                        <Form.Label className="elem-label" column >{item.label}</Form.Label>
                         <Form.Control type="file" 
                         {...register(`${item.label}`, { required: item.required})}
                         />
                       {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                       </Form.Group>
+                      </div>
                       )
                 case "Color Picker":
                     return(
-                        <>
-                        <Form.Label htmlFor="exampleColorInput" as="column" column>{item.label}</Form.Label>
+                      <div className="form-elem">
+                        <Form.Label className="elem-label" htmlFor="exampleColorInput" as="column" column>{item.label}</Form.Label>
                         
                         <Form.Control
                           type="color"
@@ -234,19 +249,26 @@ export default function FinalForm() {
                           {...register(`${item.label}`, { required: item.required})}
                         />
                         {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
-                        </>
+                        </div>
               )
                 }
               })()}
             </>
           );
         })}
-        <Button type="submit" variant="primary" onClick={handleSubmit}>
-          Submit
-        </Button>
-        
+        <div className="submit">
+          <Button type="submit" variant="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+          <button className="clear-button" type="submit" onClick={handleSubmit}>
+            Clear Form
+          </button>
+        </div>
       </Form>
       {/* end of Form tag */}
+      <div className="footer">
+        <p>TeamBravo Form Generator</p>
+      </div>
     </div>
   );
 }
