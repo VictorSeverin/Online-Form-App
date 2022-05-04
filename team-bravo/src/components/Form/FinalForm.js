@@ -1,15 +1,27 @@
 import { Form, Button, FloatingLabel, Check, Row, Col,InputGroup,FormControl} from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useRef,useEffect } from "react";
 import { FieldContext } from "../Context/FieldContext";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from '@hookform/error-message';
 import '../Form/FinalForm.css';
+import Confetti from 'react-confetti'
 export default function FinalForm() {
-  const { finalElems,title,description } = useContext(FieldContext);
+  const { finalElems,title,description,submissionMessage } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();
-  
-  const onSubmit = data => console.log(data);
+  const [showConfirm,setShowConfirm] = useState(false);
+  const [height, setHeight] = useState(null);
+  const [width, setWidth] = useState(null);
+  const [show, setShow] = useState(false);
+  const confettiRef = useRef(null);
 
+  useEffect(() => {
+    setHeight(confettiRef.current.clientHeight);
+    setWidth(confettiRef.current.clientWidth);
+  }, [])
+  const onSubmit = (data) => 
+  {
+    console.log(data);
+    setShowConfirm(!showConfirm);
+  }
   const clearForm = () => {
     var answer = window.confirm("Are you sure you want to clear ther form?");
     if (answer) {
@@ -33,13 +45,26 @@ export default function FinalForm() {
     return isValid;
   };
   return (
-    <div className="formWrapper">
+    <div className="formWrapper" ref={confettiRef}>
+      
+      {showConfirm ? 
+      <div className="form form-subm">
+        <h1>Thanks for Your Submission!</h1>
+        <p>{submissionMessage}</p>
+        <Confetti
+          width={width}
+          heigh={height}
+          numberOfPieces={80}
+          recycle={true}
+          />
+      </div>
+      :
+      <>
       <div className="formTitleWrapper">
         <h1 className="formTitle">{title}</h1>
         <p>{description}</p>
       </div>
       
-      {/* Start of form tag */}
       <Form onSubmit={handleSubmit(onSubmit)} className="form">
         {finalElems.map((item) => {
           return (
@@ -268,15 +293,18 @@ export default function FinalForm() {
           <Button type="submit" variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
-          <button className="clear-button" type="submit" onClick={clearForm}>
-            Clear Form
-          </button>
+
+            <button className="clear-button" type="submit" onClick={clearForm}>
+              Clear Form
+            </button>
         </div>
       </Form>
       {/* end of Form tag */}
-      <div className="footer">
+      <footer className="footer">
         <p>TeamBravo Form Generator</p>
-      </div>
+      </footer>
+      </>
+      }
     </div>
   );
 }
