@@ -224,6 +224,7 @@ export default function FinalForm() {
                   case "Toggle":
                       return(
                         <div className="form-elem">
+                        {/* <Form.label className="elem-label" column >{item.label}</Form.label> */}
                         <Form.Check 
                         type="switch"
                         id="custom-switch"
