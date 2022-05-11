@@ -29,10 +29,10 @@ function FieldTable() {
           </tr>
         )}
       </tbody>
-      <Link to="/finalform">
-        <button className='btn btn-primary save-btn'>Save</button>
-      </Link>
     </table>
+      <Link to="/finalform">
+        <button className='btn btn-primary save-btn'>Generate Form</button>
+      </Link>
   </div>
   )
 }

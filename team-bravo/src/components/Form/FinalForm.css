@@ -12,8 +12,8 @@ body{
     height: 100%;
 }
 .form{
-    width: 40%;
-    box-shadow: 0px 0px 55px 52px rgba(0,0,0,0.1),0px 15px 20px 10px rgba(0,0,0,0.1);
+    width: 35%;
+    box-shadow:5px 5px 17px -5px #000000;
     border-radius: 10px;
     padding: 30px;
     background-color: white;
@@ -25,7 +25,7 @@ body{
     justify-content: space-around;
     width: 40%;
     margin: 1.5rem;
-    box-shadow: 0px 0px 40px 40px rgba(0,0,0,0.1),0px 10px 15px 10px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 17px -5px #000000;
     padding: 2rem 1rem;
     border-radius: 10px;
     background-image: url("./gradient.jpg");
@@ -55,4 +55,18 @@ body{
     background-color: white;
     text-decoration: underline;
     padding: 10px;
+}
+.footer{
+    margin: -30px 0;
+}
+.submit{
+    margin: 30px 0 0 0;
+}
+.form-subm{
+    text-align: center;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
 }

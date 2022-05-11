@@ -9,6 +9,7 @@ function FieldContextProvider(props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [formInfo,setFormInfo] = useState([]) 
+    const [submissionMessage,setSubmissionMessage] = useState("");
     useEffect(() => {
           const getTasks = async () => {
           const tasksFromServer = await fetchTasks()
@@ -32,6 +33,9 @@ function FieldContextProvider(props) {
     
     const editDescription = (d) => {
       setDescription(d)
+    }
+    const editSubmissionMessage = (m) =>{
+      setSubmissionMessage(m)
     }
     
     const addElem = (elem) => {
@@ -57,7 +61,7 @@ function FieldContextProvider(props) {
     }
 
     return (
-        <FieldContext.Provider value={{finalElems, title, description, editTitle, editDescription, addElem, deleteElem, editElem}}>
+        <FieldContext.Provider value={{finalElems, title, description, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
             {props.children}
         </FieldContext.Provider>
     )

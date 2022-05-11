@@ -1,14 +1,16 @@
+
 .mainpage{
     display: flex;
-    height: 100%;
+    height: auto;
     align-items: left;
     width: 90%;
     flex-direction: column;
     padding-left: 250px;
     padding-right: 150px;
     padding-top: 50px;
+    background: rgb(244, 248, 252);
+    background-repeat: repeat-y;
 }
-
 .mainpage h1 {
     font-style: normal;
     font-size: 64px;
@@ -31,6 +33,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 2px 15px -5px #000000;
 }
 .optional-message .table-svg{
     font-size: 8rem;

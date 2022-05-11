@@ -4,9 +4,12 @@ import * as IoIcons from "react-icons/io";
 import {useState} from "react"
 import { Form } from 'react-bootstrap'
 import { FieldContext } from "../Context/FieldContext";
+import {register} from "react-dom"
+
 
 function MainPage() {
-    const {finalElems,editTitle,title,editDescription,description} = useContext(FieldContext)
+    const { register, handleSubmit,formState: { errors } } = useForm();
+    const {finalElems,editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
     // const {editTitle} = useContext(FieldContext)
     // const {title} = useContext(FieldContext)
     // const {editDescription} = useContext(FieldContext)
@@ -30,8 +33,15 @@ function MainPage() {
                         <Form.Label>Form Description</Form.Label>
                         <Form.Control as="textarea" rows={3} placeholder="Enter Description" onChange={(e) => editDescription(e.target.value)} value={description} />
                     </Form.Group>
+                    <Form.Group className="mb-3 form-info-ta" controlId="">
+                        <Form.Label>Submission Message</Form.Label>
+                        <Form.Control as="textarea" rows={2} placeholder="The message people will see after succesfully submitting the form." onChange={(e) => editSubmissionMessage(e.target.value)} value={submissionMessage} />
+                    </Form.Group>
                 </Form>
             </div>
+            {/* <div>
+                Number of Submissions
+            </div> */}
             <div className="table-wrapper">
                 <div className="table-component">
                     {finalElems.length > 0 ? (
