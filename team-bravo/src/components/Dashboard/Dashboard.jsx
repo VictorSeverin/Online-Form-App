@@ -1,5 +1,6 @@
 import service from "../../services/service";
 import React, { createContext, useState, useEffect } from "react";
+import {useNavigate,Navigate, Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import * as IoIcons from "react-icons/io";
 import * as FiIcons from "react-icons/fi";
@@ -11,17 +12,20 @@ export default function Dashboard() {
     let name="Jora"
     let description = "Kardan"
     let id;
+    let navigate = useNavigate();
     const [forms,setForms] = useState([]);
 
-    const generateForm = () =>{
+    const generateForm = (formId) =>{
         service.createForm({id,name,description})
         setForms([...forms, {id, name, description}])
+        console.log(formId);
+        
     }
-
     useEffect(() => {
         const getForms = async () => {
         const formsFromServer = await fetchForms()
         setForms(formsFromServer)
+
       }
   
       getForms()
@@ -31,7 +35,6 @@ export default function Dashboard() {
   const fetchForms = async () => {
       const res = await fetch('http://localhost:8080/api/v1/forms/')
       const data = await res.json()
-  
       console.log(data)
       return data
   };
@@ -48,11 +51,13 @@ export default function Dashboard() {
 
         {forms.map((item) => {
           return(
-            <div className="dashboard--card" onClick={() => console.log(item.id)}>
+            <div key={item.formId} className="dashboard--card" >
               <div className="card--thumbnail"></div>
               <div className="card--info">
                 <h2>{`Form: ${item.name}`}</h2>
-                <FiIcons.FiExternalLink className="card--link-icon"/>
+                {/* <Link to={`/form/${item.id}`}>
+                </Link> */}
+                <FiIcons.FiExternalLink className="card--link-icon" onClick={() => navigate(`/forms/${item.id}`)}/>
               </div>
             </div>
           )

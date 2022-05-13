@@ -1,22 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import FieldTable from "./FieldTable/FieldTable"
 import * as IoIcons from "react-icons/io";
-import {useState} from "react"
 import { Form } from 'react-bootstrap'
 import { FieldContext } from "../Context/FieldContext";
+import { useParams } from 'react-router-dom';
 
 function MainPage() {
-    const {finalElems,editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
+    const {editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
     // const {editTitle} = useContext(FieldContext)
     // const {title} = useContext(FieldContext)
     // const {editDescription} = useContext(FieldContext)
     // const {description} = useContext(FieldContext)
     const [Title,setTitle] = useState()
     const [Description,setDescription] = useState()
+    const [finalElems, setFinalElems] = useState([])
+    let {id} = useParams();
     const handleChange = (e) =>{
         setTitle(e)
         editTitle(Title)
     }
+    useEffect(() => {
+        const getTasks = async () => {
+            const tasksFromServer = await fetchTasks(id)
+            setFinalElems(tasksFromServer)
+            
+       }
+       getTasks()
+   }, [])
+     // Fetch Tasks
+   const fetchTasks = async () => {
+       console.log(id)
+       let url = `http://localhost:8080/api/v1/forms/${id}`
+       const res = await fetch(url)
+       const data = await res.json()
+       console.log(data)
+       return data
+   }
+   const handleClick = () =>{
+    console.log(finalElems)
+  }
     return(
         <div className="mainpage">
             <h2>Team Bravo's Web Form Generator</h2>
@@ -42,10 +64,10 @@ function MainPage() {
             <div className="table-wrapper">
                 <div className="table-component">
                     {finalElems.length > 0 ? (
-                        <FieldTable />
+                        <FieldTable finalElems={finalElems}/>
                         ) : (
                         <div className="optional-message"> 
-                            <IoIcons.IoMdAddCircleOutline className="table-svg" />
+                            <IoIcons.IoMdAddCircleOutline className="table-svg" onClick={handleClick} />
                             <p>No Elements to show. Please add an element</p>
                         </div>
                         )}

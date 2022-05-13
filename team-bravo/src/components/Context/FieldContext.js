@@ -10,21 +10,22 @@ function FieldContextProvider(props) {
     const [description, setDescription] = useState("")
     const [formInfo,setFormInfo] = useState([]) 
     const [submissionMessage,setSubmissionMessage] = useState("");
-    useEffect(() => {
-          const getTasks = async () => {
-          const tasksFromServer = await fetchTasks()
-          setFinalElems(tasksFromServer)
-        }
-    
-        getTasks()
-    }, [])
-    
-      // Fetch Tasks
-    const fetchTasks = async () => {
-        const res = await fetch('http://localhost:8080/api/v1/forms/3')
-        const data = await res.json()
-        return data
-    }
+    const [formId,setFormId] = useState();
+    //  useEffect(() => {
+    //       console.log(formId)
+    //        const getTasks = async () => {
+    //        const tasksFromServer = await fetchTasks()
+    //        setFinalElems(tasksFromServer)
+    //      }
+    //      getTasks()
+    //  }, [])
+    //    // Fetch Tasks
+    //  const fetchTasks = async () => {
+    //      let url = `http://localhost:8080/api/v1/forms/${formId}`
+    //      const res = await fetch(url)
+    //      const data = await res.json()
+    //      return data
+    //  }
 
     const editTitle = (t) => {
       setTitle(t)
@@ -40,9 +41,9 @@ function FieldContextProvider(props) {
     
     const addElem = (elem) => {
         setFinalElems([...finalElems, elem])
-        // console.log(elem)
+        console.log(elem)
         // //TODO change to dynamic variable
-         service.addTypeToForm(3,elem).then((response) =>{
+         service.addTypeToForm(elem.formId,elem).then((response) =>{
            console.log(response.data)
          }).then(error =>{
            console.log(error)

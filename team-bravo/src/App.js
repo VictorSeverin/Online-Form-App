@@ -5,7 +5,6 @@ import Modal from "./components/Modal/ModalComp"
 import { useState } from 'react'
 import MainPage from'./components/MainPage/MainPage'
 import ModalComp from './components/Modal/ModalComp';
-import { elementSelectorParser } from 'tailwindcss/lib/lib/resolveDefaultsAtRules';
 import { SidebarData } from './components/Sidebar/Sidebardata';
 import { useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route, Routes, Navigate} from "react-router-dom"
@@ -22,7 +21,6 @@ function App() {
     setShow(true);
     setTitle(item)
   }
-  let id = 3;
 
   return (
     <FieldContextProvider>
@@ -32,7 +30,7 @@ function App() {
             <Route path='/' element={<Navigate to="/form" />} />
             <Route path="/form" element={<Dashboard />} />
             <Route 
-            path={`/form/${id}`}
+            path={"/forms/:id"}
             exact 
             element={           
               <>
@@ -45,7 +43,7 @@ function App() {
                   title={title} />
               </>
               } />
-              <Route exact path='/finalform' element={<FinalForm />} />
+              <Route path="/finalform/:id" element={<FinalForm />} />
             </Routes>
         </div>
       </Router>
