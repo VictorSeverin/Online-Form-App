@@ -15,29 +15,20 @@ export default function Dashboard() {
     let navigate = useNavigate();
     const [forms,setForms] = useState([]);
 
-    const generateForm = (formId) =>{
-        service.createForm({id,name,description})
-        setForms([...forms, {id, name, description}])
-        console.log(formId);
-        
+    const generateForm = () =>{
+        (async() => {
+          await service.createForm({id,name,description})
+          const formsFromServer = await service.getAllForms()
+          const latestID = formsFromServer.data[formsFromServer.data.length - 1].id
+
+          navigate(`/forms/${latestID}`)
+        })();
     }
     useEffect(() => {
-        const getForms = async () => {
-        const formsFromServer = await fetchForms()
-        setForms(formsFromServer)
-
-      }
-  
-      getForms()
+        service.getAllForms().then(f => {
+          setForms(f.data)
+        })
   }, [])
-  
-    // Fetch Tasks
-  const fetchForms = async () => {
-      const res = await fetch('http://localhost:8080/api/v1/forms/')
-      const data = await res.json()
-      console.log(data)
-      return data
-  };
 
   return (
     <div className="dashboard">

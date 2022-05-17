@@ -6,38 +6,20 @@ import { FieldContext } from "../Context/FieldContext";
 import { useParams } from 'react-router-dom';
 
 function MainPage() {
-    const {editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
+    const {loadInitial, finalElems, editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
     // const {editTitle} = useContext(FieldContext)
     // const {title} = useContext(FieldContext)
     // const {editDescription} = useContext(FieldContext)
     // const {description} = useContext(FieldContext)
     const [Title,setTitle] = useState()
     const [Description,setDescription] = useState()
-    const [finalElems, setFinalElems] = useState([])
     let {id} = useParams();
-    const handleChange = (e) =>{
-        setTitle(e)
-        editTitle(Title)
-    }
+
     useEffect(() => {
-        const getTasks = async () => {
-            const tasksFromServer = await fetchTasks(id)
-            setFinalElems(tasksFromServer)
-            
-       }
-       getTasks()
-   }, [])
-     // Fetch Tasks
-   const fetchTasks = async () => {
-       console.log(id)
-       let url = `http://localhost:8080/api/v1/forms/${id}`
-       const res = await fetch(url)
-       const data = await res.json()
-       console.log(data)
-       return data
-   }
+        loadInitial(id)
+    }, [])
+
    const handleClick = () =>{
-    console.log(finalElems)
   }
     return(
         <div className="mainpage">

@@ -24,7 +24,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
     //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
-    addElem({id,title, label, placeholder, required, radioButtonOptions,currencyOption})
+    addElem(id, {title, label, placeholder, required, radioButtonOptions,currencyOption})
 
     setLabel('')
     setPlaceholder('')
