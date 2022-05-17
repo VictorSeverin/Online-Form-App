@@ -1,9 +1,10 @@
 import { Form, Button, FloatingLabel, Check, Row, Col,InputGroup,FormControl} from "react-bootstrap";
 import React, { useContext, useState,useRef,useEffect } from "react";
 import { FieldContext } from "../Context/FieldContext";
-import { useForm } from "react-hook-form";
 import '../Form/FinalForm.css';
 import Confetti from 'react-confetti'
+import { useForm } from "react-hook-form";
+
 export default function FinalForm() {
   const { finalElems,title,description,submissionMessage } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();

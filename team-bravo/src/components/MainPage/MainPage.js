@@ -4,7 +4,7 @@ import * as IoIcons from "react-icons/io";
 import {useState} from "react"
 import { Form } from 'react-bootstrap'
 import { FieldContext } from "../Context/FieldContext";
-import {register} from "react-dom"
+import { useForm } from "react-hook-form";
 
 
 function MainPage() {

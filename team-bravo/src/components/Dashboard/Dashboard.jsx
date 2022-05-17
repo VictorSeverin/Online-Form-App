@@ -48,7 +48,7 @@ export default function Dashboard() {
 
         {forms.map((item) => {
           return(
-            <div className="dashboard--card" onClick={() => console.log(item.id)}>
+            <div className="dashboard--card" onClick={() => console.log(item)}>
               <div className="card--thumbnail"></div>
               <div className="card--info">
                 <h2>{`Form: ${item.name}`}</h2>
