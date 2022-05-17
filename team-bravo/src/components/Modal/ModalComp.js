@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { FieldContext } from '../Context/FieldContext';
 import { useParams } from 'react-router-dom';
+import service from "../../services/service";
 
 export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {   
   const [label,setLabel] = useState('')
@@ -25,7 +26,11 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     // }
     //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
     addElem({id,title, label, placeholder, required, radioButtonOptions,currencyOption})
-
+    service.addTypeToForm(id,{id,title, label, placeholder, required, radioButtonOptions,currencyOption}).then((response) =>{
+      console.log(response.data)
+    }).then(error =>{
+      console.log(error)
+    })
     setLabel('')
     setPlaceholder('')
     setRequired(false)

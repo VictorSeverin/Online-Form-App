@@ -7,9 +7,9 @@ import { FieldContext } from '../../Context/FieldContext';
 import { useParams } from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 
-function FieldTable({finalElems}) {
+function FieldTable() {
 
-//const {finalElems} = useContext(FieldContext)
+const {finalElems} = useContext(FieldContext)
 let {id} = useParams();
 let navigate = useNavigate();
 

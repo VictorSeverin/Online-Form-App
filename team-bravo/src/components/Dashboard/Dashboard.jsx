@@ -14,12 +14,20 @@ export default function Dashboard() {
     let id;
     let navigate = useNavigate();
     const [forms,setForms] = useState([]);
-
+    const [value, setValue] = useState(0);
+    const redirect = (formId) =>{
+         setValue(value=>value + 1); // update the state to force render
+         navigate(`/forms/${formId}`)
+     }
     const generateForm = (formId) =>{
         service.createForm({id,name,description})
+        setValue(value + 1);
+        if(forms.length!=0){
+          id = forms[forms.length-1].id;
+        }
         setForms([...forms, {id, name, description}])
-        console.log(formId);
-        
+        console.log(forms)
+        navigate(`/forms/${id}`)
     }
     useEffect(() => {
         const getForms = async () => {
@@ -30,7 +38,7 @@ export default function Dashboard() {
   
       getForms()
   }, [])
-  
+
     // Fetch Tasks
   const fetchForms = async () => {
       const res = await fetch('http://localhost:8080/api/v1/forms/')
@@ -57,7 +65,7 @@ export default function Dashboard() {
                 <h2>{`Form: ${item.name}`}</h2>
                 {/* <Link to={`/form/${item.id}`}>
                 </Link> */}
-                <FiIcons.FiExternalLink className="card--link-icon" onClick={() => navigate(`/forms/${item.id}`)}/>
+                <FiIcons.FiExternalLink className="card--link-icon" onClick={() => redirect(item.id)}/>
               </div>
             </div>
           )

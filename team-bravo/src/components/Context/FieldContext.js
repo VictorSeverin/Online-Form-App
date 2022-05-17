@@ -42,12 +42,6 @@ function FieldContextProvider(props) {
     const addElem = (elem) => {
         setFinalElems([...finalElems, elem])
         console.log(elem)
-        // //TODO change to dynamic variable
-         service.addTypeToForm(elem.formId,elem).then((response) =>{
-           console.log(response.data)
-         }).then(error =>{
-           console.log(error)
-         })
     }
 
     const deleteElem = (index) => {
