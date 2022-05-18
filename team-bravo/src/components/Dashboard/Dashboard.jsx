@@ -7,13 +7,14 @@ import * as FiIcons from "react-icons/fi";
 import userLogo from "../Sidebar/profilepic.jpg"
 import teamLogo from "../../logo.png"
 import "./Dashboard.css"
-
+import thumbnail from "./thumbnail.png"
 export default function Dashboard() {
     let name="Jora"
     let description = "Kardan"
     let id;
     let navigate = useNavigate();
     const [forms,setForms] = useState([]);
+    const [searchTerm,setSearchTerm] = useState("");
 
     const generateForm = () =>{
         (async() => {
@@ -34,16 +35,23 @@ export default function Dashboard() {
     <div className="dashboard">
       <nav className="dashboard--nav">
         <img className="dashboard--teamlogo" src={teamLogo} />
-        <input type="text" name = "name" placeholder="Search" className = "input" />
+        <input type="text" name = "name" placeholder="Search" className = "input" onChange={(event) => {setSearchTerm(event.target.value)}} />
         <img className="dashboard--pfp" src={userLogo} />
       </nav>
 
       <div className="dashboard--cards">
 
-        {forms.map((item) => {
+        {forms.filter((val) => {
+          if (searchTerm == "") {
+            return val
+          }
+          else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val
+          }
+        }).map((item) => {
           return(
             <div key={item.formId} className="dashboard--card" >
-              <div className="card--thumbnail"></div>
+              <img className="card--thumbnail" src={thumbnail}/>
               <div className="card--info">
                 <h2>{`Form: ${item.name}`}</h2>
                 {/* <Link to={`/form/${item.id}`}>
