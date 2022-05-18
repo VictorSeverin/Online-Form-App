@@ -14,6 +14,7 @@ export default function Dashboard() {
     let id;
     let navigate = useNavigate();
     const [forms,setForms] = useState([]);
+    const [searchTerm,setSearchTerm] = useState("");
 
     const generateForm = () =>{
         (async() => {
@@ -34,13 +35,20 @@ export default function Dashboard() {
     <div className="dashboard">
       <nav className="dashboard--nav">
         <img className="dashboard--teamlogo" src={teamLogo} />
-        <input type="text" name = "name" placeholder="Search" className = "input" />
+        <input type="text" name = "name" placeholder="Search" className = "input" onChange={(event) => {setSearchTerm(event.target.value)}} />
         <img className="dashboard--pfp" src={userLogo} />
       </nav>
 
       <div className="dashboard--cards">
 
-        {forms.map((item) => {
+        {forms.filter((val) => {
+          if (searchTerm == "") {
+            return val
+          }
+          else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val
+          }
+        }).map((item) => {
           return(
             <div key={item.formId} className="dashboard--card" >
               <img className="card--thumbnail" src={thumbnail}/>
