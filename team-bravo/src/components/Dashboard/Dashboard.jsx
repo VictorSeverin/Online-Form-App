@@ -7,7 +7,7 @@ import * as FiIcons from "react-icons/fi";
 import userLogo from "../Sidebar/profilepic.jpg"
 import teamLogo from "../../logo.png"
 import "./Dashboard.css"
-
+import thumbnail from "./thumbnail.png"
 export default function Dashboard() {
     let name="Jora"
     let description = "Kardan"
@@ -43,7 +43,7 @@ export default function Dashboard() {
         {forms.map((item) => {
           return(
             <div key={item.formId} className="dashboard--card" >
-              <div className="card--thumbnail"></div>
+              <img className="card--thumbnail" src={thumbnail}/>
               <div className="card--info">
                 <h2>{`Form: ${item.name}`}</h2>
                 {/* <Link to={`/form/${item.id}`}>
