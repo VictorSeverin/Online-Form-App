@@ -10,21 +10,15 @@ function FieldContextProvider(props) {
     const [description, setDescription] = useState("")
     const [formInfo,setFormInfo] = useState([]) 
     const [submissionMessage,setSubmissionMessage] = useState("");
-    useEffect(() => {
-          const getTasks = async () => {
-          const tasksFromServer = await fetchTasks()
-          setFinalElems(tasksFromServer)
-        }
-    
-        getTasks()
-    }, [])
-    
-      // Fetch Tasks
-    const fetchTasks = async () => {
-        const res = await fetch('http://localhost:8080/api/v1/forms/3')
-        const data = await res.json()
-        return data
+    const [formId, setFormId] = useState();
+
+    const loadInitial = (id) => {
+      setFormId(id)
+      service.getAllTypesByFormId(id).then(elems => {
+        setFinalElems(elems.data)
+      })
     }
+      
 
     const editTitle = (t) => {
       setTitle(t)
@@ -38,18 +32,22 @@ function FieldContextProvider(props) {
       setSubmissionMessage(m)
     }
     
-    const addElem = (elem) => {
-        setFinalElems([...finalElems, elem])
-        // console.log(elem)
+    const addElem = (formID, elem) => {
+        console.log("Element ID: " + elem.id)
+        console.log("Form ID: " + formID)
         // //TODO change to dynamic variable
-         service.addTypeToForm(3,elem).then((response) =>{
+         service.addTypeToForm(formID,elem).then((response) =>{
            console.log(response.data)
+           setFinalElems([...finalElems, response.data])
+           console.log(finalElems)
          }).then(error =>{
-           console.log(error)
+           console.log("Error: " + error)
          })
     }
 
     const deleteElem = (index) => {
+      console.log(finalElems[index].id)
+      service.deleteType(formId, finalElems[index].id)
       const newElems = [...finalElems.slice(0,index), ...finalElems.slice(index+1)]
       setFinalElems(newElems)
       // TOOD: add server functionality as well
@@ -61,7 +59,7 @@ function FieldContextProvider(props) {
     }
 
     return (
-        <FieldContext.Provider value={{finalElems, title, description, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
+        <FieldContext.Provider value={{finalElems, title, description, loadInitial, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
             {props.children}
         </FieldContext.Provider>
     )

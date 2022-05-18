@@ -4,6 +4,7 @@ import { Button, DropdownButton, Dropdown} from 'react-bootstrap';
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { FieldContext } from '../Context/FieldContext';
+import { useParams } from 'react-router-dom';
 
 export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {   
   const [label,setLabel] = useState('')
@@ -11,9 +12,8 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
   const [required,setRequired] = useState(false)
   const [radioButtonOptions,setRadioButtonOptions] = useState([])
   const [currencyOption,setCurrencyOption] = useState("$")
-  const [formId,setFormId] = useState(1);
   const {addElem} = useContext(FieldContext)
-
+  let {id} = useParams();
   const onSubmit = (e) => {
     e.preventDefault()
     // if (!label) {
@@ -24,7 +24,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
     //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
-    addElem({formId,title, label, placeholder, required, radioButtonOptions,currencyOption})
+    addElem(id, {title, label, placeholder, required, radioButtonOptions,currencyOption})
 
     setLabel('')
     setPlaceholder('')
@@ -89,7 +89,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
                     <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
                   </Form.Group>
                 
-                  <Button type="submit" variant="primary"  >
+                  <Button type="submit" variant="primary" onClick={() => handleShow()} >
                       Save Changes
                     </Button>
                 </Form>

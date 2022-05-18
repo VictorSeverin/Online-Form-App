@@ -1,14 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import './FieldTable.css';
 import '../MainPage.css';
 import TableRow from './TableRow';
 import * as IoIcons from "react-icons/io";
-import { Link } from 'react-router-dom'
 import { FieldContext } from '../../Context/FieldContext';
+import { useParams } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
 
-function FieldTable() {
+function FieldTable({finalElems}) {
 
-  const {finalElems} = useContext(FieldContext)
+//const {finalElems} = useContext(FieldContext)
+let {id} = useParams();
+let navigate = useNavigate();
+
 
   return (
     <div className='table-wrapper'>
@@ -29,10 +33,8 @@ function FieldTable() {
           </tr>
         )}
       </tbody>
+        <button className='btn btn-primary save-btn' onClick={() => navigate(`/finalform/${id}`)}>Generate Form</button>
     </table>
-      <Link to="/finalform">
-        <button className='btn btn-primary save-btn'>Generate Form</button>
-      </Link>
   </div>
   )
 }

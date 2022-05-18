@@ -1,25 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import FieldTable from "./FieldTable/FieldTable"
 import * as IoIcons from "react-icons/io";
-import {useState} from "react"
 import { Form } from 'react-bootstrap'
 import { FieldContext } from "../Context/FieldContext";
 import { useForm } from "react-hook-form";
+import { useParams } from 'react-router-dom';
 
-
-function MainPage() {
+   
+    function MainPage() {
     const { register, handleSubmit,formState: { errors } } = useForm();
-    const {finalElems,editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
+    const {loadInitial, finalElems, editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
     // const {editTitle} = useContext(FieldContext)
     // const {title} = useContext(FieldContext)
     // const {editDescription} = useContext(FieldContext)
     // const {description} = useContext(FieldContext)
     const [Title,setTitle] = useState()
     const [Description,setDescription] = useState()
-    const handleChange = (e) =>{
-        setTitle(e)
-        editTitle(Title)
-    }
+    let {id} = useParams();
+
+    useEffect(() => {
+        loadInitial(id)
+    }, [])
+
+   const handleClick = () =>{
+  }
     return(
         <div className="mainpage">
             <h2>Team Bravo's Web Form Generator</h2>
@@ -45,10 +49,10 @@ function MainPage() {
             <div className="table-wrapper">
                 <div className="table-component">
                     {finalElems.length > 0 ? (
-                        <FieldTable />
+                        <FieldTable finalElems={finalElems}/>
                         ) : (
                         <div className="optional-message"> 
-                            <IoIcons.IoMdAddCircleOutline className="table-svg" />
+                            <IoIcons.IoMdAddCircleOutline className="table-svg" onClick={handleClick} />
                             <p>No Elements to show. Please add an element</p>
                         </div>
                         )}
