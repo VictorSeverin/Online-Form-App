@@ -25,12 +25,8 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
     //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
-    addElem({id,title, label, placeholder, required, radioButtonOptions,currencyOption})
-    service.addTypeToForm(id,{id,title, label, placeholder, required, radioButtonOptions,currencyOption}).then((response) =>{
-      console.log(response.data)
-    }).then(error =>{
-      console.log(error)
-    })
+    addElem(id, {title, label, placeholder, required, radioButtonOptions,currencyOption})
+
     setLabel('')
     setPlaceholder('')
     setRequired(false)
@@ -94,7 +90,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
                     <Form.Check type="checkbox" label="Required" onChange={(e) => setRequired(e.currentTarget.checked)} />
                   </Form.Group>
                 
-                  <Button type="submit" variant="primary" onClick={() => handleShow()} >
+                  <Button type="submit" variant="primary" >
                       Save Changes
                     </Button>
                 </Form>

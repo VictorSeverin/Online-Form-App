@@ -19,33 +19,38 @@ export default function Dashboard() {
          setValue(value=>value + 1); // update the state to force render
          navigate(`/forms/${formId}`)
      }
-    const generateForm = (formId) =>{
-        service.createForm({id,name,description})
-        setValue(value + 1);
-        if(forms.length!=0){
-          id = forms[forms.length-1].id;
-        }
-        setForms([...forms, {id, name, description}])
-        console.log(forms)
-        navigate(`/forms/${id}`)
+    // const generateForm = (formId) =>{
+    //     service.createForm({id,name,description})
+    //     setValue(value + 1);
+    //     if(forms.length!=0){
+    //       id = forms[forms.length-1].id;
+    //     }
+    //     setForms([...forms, {id, name, description}])
+    //     console.log(forms)
+    //     navigate(`/forms/${id}`)
+
+    const generateForm = () =>{
+        (async() => {
+          await service.createForm({id,name,description})
+          const formsFromServer = await service.getAllForms()
+          const latestID = formsFromServer.data[formsFromServer.data.length - 1].id
+
+          navigate(`/forms/${latestID}`)
+        })();
     }
     useEffect(() => {
-        const getForms = async () => {
-        const formsFromServer = await fetchForms()
-        setForms(formsFromServer)
-
-      }
-  
-      getForms()
+        service.getAllForms().then(f => {
+          setForms(f.data)
+        })
   }, [])
 
     // Fetch Tasks
-  const fetchForms = async () => {
-      const res = await fetch('http://localhost:8080/api/v1/forms/')
-      const data = await res.json()
-      console.log(data)
-      return data
-  };
+  // const fetchForms = async () => {
+  //     const res = await fetch('http://localhost:8080/api/v1/forms/')
+  //     const data = await res.json()
+  //     console.log(data)
+  //     return data
+  // };
 
   return (
     <div className="dashboard">
