@@ -11,7 +11,7 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
   const [label,setLabel] = useState('')
   const [placeholder,setPlaceholder] = useState('')
   const [required,setRequired] = useState(false)
-  const [radioButtonOptions,setRadioButtonOptions] = useState([])
+  const [options,setOptions] = useState([])
   const [currencyOption,setCurrencyOption] = useState("$")
   const {addElem} = useContext(FieldContext)
   let {id} = useParams();
@@ -25,19 +25,20 @@ export default function ModalComp({handleClose,handleShow,show,onAdd,title}) {
     //   return
     // }
     //TODO change back to { title, label, placeholder, required ,radioButtonOptions,currencyOption}
-    addElem(id, {title, label, placeholder, required, radioButtonOptions,currencyOption})
+    addElem(id, {title, label, placeholder, required, options,currencyOption})
 
     setLabel('')
     setPlaceholder('')
     setRequired(false)
-    setRadioButtonOptions([])
+    setOptions([])
     setCurrencyOption('')
     handleClose()
   }
   const handleRadioButton = (option, i) =>{
-    let newArr = [...radioButtonOptions]
+    let newArr = [...options]
     newArr[i] = option
-    setRadioButtonOptions(newArr)
+    setOptions(newArr)
+    console.log(options)
   }
   return (
       <>

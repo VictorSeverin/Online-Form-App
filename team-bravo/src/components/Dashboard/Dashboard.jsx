@@ -105,7 +105,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <nav className="dashboard--nav">
         <img className="dashboard--teamlogo" src={teamLogo} />
-        <input type="text" name = "name" placeholder="Search" className = "input" onChange={(event) => {setSearchTerm(event.target.value)}} />
+        <input type="text" name = "name" placeholder="Search" className = "nav--input" onChange={(event) => {setSearchTerm(event.target.value)}} />
         <img className="dashboard--pfp" src={userLogo} />
       </nav>
 

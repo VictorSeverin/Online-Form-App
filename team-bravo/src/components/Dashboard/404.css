@@ -1,5 +1,8 @@
 body{
     background-image: url("404img.jpg");
+    
+        min-height: 100vh;
+    height: max-content;
 }
 .wrapper-404{
     display: flex;

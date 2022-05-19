@@ -52,13 +52,6 @@ export default function FinalForm() {
     console.log(data)
     return data
 }
-const fetchFormInfo = async () => {
-  let url = `http://localhost:8080/api/v1/forms/`
-  const res = await fetch(url)
-  const data = await res.json()
-  console.log(data)
-  return data
-}
   const onSubmit = (data) => 
   {
     createSubmission(data,id);
@@ -249,14 +242,14 @@ const fetchFormInfo = async () => {
                         <Form.Label className="elem-label">{item.label}</Form.Label>
                         <Form.Select aria-label="Default select example" {...register(`${item.label}`, { required: item.required})} >
                           <option>Select One</option>
-                          {item.radioButtonOptions[0] && <option value={item.radioButtonOptions[0]}>
-                            {item.radioButtonOptions[0]}
+                          {item.options[0] && <option value={item.options[0]}>
+                            {item.options[0]}
                           </option>}
-                          {item.radioButtonOptions[1] && <option value={item.radioButtonOptions[1]}>
-                            {item.radioButtonOptions[1]}
+                          {item.options[1] && <option value={item.options[1]}>
+                            {item.options[1]}
                           </option>}
-                          {item.radioButtonOptions[2] && <option value={item.radioButtonOptions[2]}>
-                            {item.radioButtonOptions[2]}
+                          {item.options[2] && <option value={item.options[2]}>
+                            {item.options[2]}
                           </option>}
                         {errors[item.label] && <span style={{color:"red"}}>This item is required</span>}
                         </Form.Select>
@@ -272,33 +265,33 @@ const fetchFormInfo = async () => {
                               {item.label}
                             </Form.Label>
                             <Col sm={10}>
-                              {item.radioButtonOptions[0] && (
+                              {item.options[0] && (
                                 <Form.Check
                                   type="radio"
-                                  label={item.radioButtonOptions[0]}
+                                  label={item.options[0]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios1"
-                                  value={item.radioButtonOptions[0]}
+                                  value={item.options[0]}
                                   {...register(`${item.label}`, { required: item.required})}
                                 />
                               )}
-                              {item.radioButtonOptions[1] && (
+                              {item.options[1] && (
                                 <Form.Check
                                   type="radio"
-                                  label={item.radioButtonOptions[1]}
+                                  label={item.options[1]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios2"
-                                  value={item.radioButtonOptions[1]}
+                                  value={item.options[1]}
                                   {...register(`${item.label}`, { required: item.required})}
                                 />
                               )}
-                              {item.radioButtonOptions[2] && (
+                              {item.options[2] && (
                                 <Form.Check
                                   type="radio"
-                                  label={item.radioButtonOptions[2]}
+                                  label={item.options[2]}
                                   name="formHorizontalRadios"
                                   id="formHorizontalRadios3"
-                                  value={item.radioButtonOptions[2]}
+                                  value={item.options[2]}
                                   {...register(`${item.label}`, { required: item.required})}
                                   />
                                   )}
