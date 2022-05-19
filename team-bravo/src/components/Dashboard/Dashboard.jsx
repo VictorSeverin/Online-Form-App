@@ -73,7 +73,12 @@ export default function Dashboard() {
     console.log("deleting form")
     var answer = window.confirm("Are you sure you want to delete the form?");
     if (answer) {
-      service.deleteForm(formId)
+      service.deleteForm(formId).then(() => {
+        service.getAllForms().then((f) => {
+          // update all forms
+          setForms(f.data)
+        })
+      })
     }
     setRefresh(value => !value)
   }
