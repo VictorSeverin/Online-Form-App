@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 
 export default function FinalForm() {
-  const {title,description,submissionMessage,createSubmission } = useContext(FieldContext);
+  const {createSubmission } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();
   const [showConfirm,setShowConfirm] = useState(false);
   const [height, setHeight] = useState(null);
@@ -15,6 +15,9 @@ export default function FinalForm() {
   const [show, setShow] = useState(false);
   const confettiRef = useRef(null);
   const [finalElems, setFinalElems] = useState([])
+  const [Title,setTitle] = useState()
+  const [Description,setDescription] = useState()
+  const [subMessage,setSubmessage] = useState()
   let {id} = useParams();
 
   useEffect(() => {
@@ -23,8 +26,22 @@ export default function FinalForm() {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks(id)
       setFinalElems(tasksFromServer)
-      
       }
+      const fetchForminfo = async () =>{
+        let url = `http://localhost:8080/api/v1/forms/`
+        const res = await fetch(url)
+         const data = await res.json()
+         //setTitle(data.name)
+         console.log(data)
+         for(let i = 0; i< data.length;i++){
+             if(data[i].id == id){
+               setTitle(data[i].name)
+               setDescription(data[i].description)
+               setSubmessage(data[i].message)
+             }
+         }
+    }
+    fetchForminfo()
       getTasks()
   }, [])
   const fetchTasks = async () => {
@@ -34,6 +51,13 @@ export default function FinalForm() {
     const data = await res.json()
     console.log(data)
     return data
+}
+const fetchFormInfo = async () => {
+  let url = `http://localhost:8080/api/v1/forms/`
+  const res = await fetch(url)
+  const data = await res.json()
+  console.log(data)
+  return data
 }
   const onSubmit = (data) => 
   {
@@ -68,7 +92,7 @@ export default function FinalForm() {
       {showConfirm ? 
       <div className="form form-subm">
         <h1>Thanks for Your Submission!</h1>
-        <p>{submissionMessage}</p>
+        <p>{subMessage}</p>
         <Confetti
           width={width}
           heigh={height}
@@ -79,8 +103,8 @@ export default function FinalForm() {
       :
       <>
       <div className="formTitleWrapper">
-        <h1 className="formTitle">{title}</h1>
-        <p>{description}</p>
+        <h1 className="formTitle">{Title}</h1>
+        <p>{Description}</p>
       </div>
       
       <Form onSubmit={handleSubmit(onSubmit)} className="form">
