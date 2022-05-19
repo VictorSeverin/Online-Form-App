@@ -34,6 +34,9 @@ class Service {
     getSubmissions(formId){
         return axios.get(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId + '/submission')
     }
+    deleteForm(formId){
+        return axios.delete(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId)
+    }
 }
 
 export default new Service()

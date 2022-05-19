@@ -22,7 +22,7 @@ function FieldContextProvider(props) {
 
     const editTitle = (t) => {
       setTitle(t)
-      service.updateForm(3,t)
+      service.updateForm(3,{title,description})
     }
     
     const editDescription = (d) => {

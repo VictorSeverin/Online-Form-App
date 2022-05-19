@@ -2,30 +2,30 @@ import service from "../../services/service";
 import React, { createContext, useState, useEffect } from "react";
 import {useNavigate,Navigate, Link } from "react-router-dom";
 import * as IoIcons from "react-icons/io";
+import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
 import userLogo from "../Sidebar/profilepic.jpg"
 import teamLogo from "../../logo.png"
 import "./Dashboard.css"
 import thumbnail from "./thumbnail.png"
-import ToastComp from './ToastComp'
 import Dropdown from 'react-bootstrap/Dropdown'
 export default function Dashboard() {
-    let name="kirl"
-    let description = "Kardan"
+    let name;
+    let description;
     let id;
     let navigate = useNavigate();
     const [forms,setForms] = useState([]);
     const [searchTerm,setSearchTerm] = useState("");
     const [showToast, setShowToast] = useState(false);
-
+    const [refresh,setRefresh] = useState(false);
     const toggleShow = () => setShowToast(!showToast);
-
+    //const [submissions,setSubmissions] = useState;
     const generateForm = () =>{
         (async() => {
           await service.createForm({id,name,description})
           const formsFromServer = await service.getAllForms()
           const latestID = formsFromServer.data[formsFromServer.data.length - 1].id
-
+          
           navigate(`/forms/${latestID}`)
         })();
     }
@@ -69,6 +69,38 @@ export default function Dashboard() {
       );
     },
   );
+  const deleteForm = (formId) =>{
+    console.log("deleting form")
+    var answer = window.confirm("Are you sure you want to delete the form?");
+    if (answer) {
+      service.deleteForm(formId)
+    }
+    setRefresh(value => !value)
+  }
+  // useEffect(() => {
+  //   const getSubmissions = async (formId) => {
+  //     const submissionsFromServer = await fetchSubmissions(formId)
+  //     setSubmissions(submissionsFromServer)
+      
+  //     }
+  //     getSubmissions()
+  // }, [])
+   const fetchSubmissions = async (formId) => {
+     let url = `http://localhost:8080/api/v1/forms/${formId}/submission`
+     const res = await fetch(url)
+     const data = await res.json()
+     //console.log(Object.keys(data[1].data))
+     //console.log(data[0].data)
+     const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = `${formId} submissions.json`;
+
+    link.click();
+  }
+ 
   return (
     <div className="dashboard">
       <nav className="dashboard--nav">
@@ -90,6 +122,7 @@ export default function Dashboard() {
           return(
             <div key={item.id} className="dashboard--card" >
               <img className="card--thumbnail" src={thumbnail}/>
+              <AiIcons.AiOutlineForm className="card--form--icon"/>
               <div className="card--info">
                 <h2 className="form--title">{`Form: ${item.name}`}</h2>
                 {/* <Link to={`/form/${item.id}`}>
@@ -100,8 +133,8 @@ export default function Dashboard() {
                     <FiIcons.FiMoreVertical className="card--more" onClick={toggleShow} />
                   </Dropdown.Toggle>
                   <Dropdown.Menu as={CustomMenu}>
-                    <Dropdown.Item className="card-more-delete">Delete Form</Dropdown.Item>
-                    <Dropdown.Item>Export Submissions</Dropdown.Item>
+                    <Dropdown.Item onClick={() => deleteForm(item.id)}>Delete Form</Dropdown.Item>
+                    <Dropdown.Item onClick={() => fetchSubmissions(item.id)}>Export Submissions</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
