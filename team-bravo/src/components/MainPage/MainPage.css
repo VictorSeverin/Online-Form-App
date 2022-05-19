@@ -1,14 +1,15 @@
+
 .mainpage{
     display: flex;
+    height: auto;
     align-items: left;
     width: 90%;
     flex-direction: column;
     padding-left: 250px;
     padding-right: 150px;
     padding-top: 50px;
-    background: #F9F7F7;
-    min-height: 100vh;
-    height: max-content;
+    background: rgb(244, 248, 252);
+    background-repeat: repeat-y;
 }
 .mainpage h1 {
     font-style: normal;

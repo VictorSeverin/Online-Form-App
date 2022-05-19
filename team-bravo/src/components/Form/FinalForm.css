@@ -1,6 +1,9 @@
+body{
+    height: 100%;
+}
 .formWrapper{
     background: rgb(255,255,255);
-    background: linear-gradient(131deg, rgba(255,255,255,1) 8%, rgba(212,238,238,1) 51%, rgba(255,255,255,1) 90%);
+    /* background: linear-gradient(131deg, rgba(255,255,255,1) 8%, rgba(212,238,238,1) 51%, rgba(255,255,255,1) 90%); */
     width: 100%;
     display: flex;
     justify-content: start;
@@ -20,7 +23,7 @@
     background-color: aqua;
     display: flex;
     justify-content: space-around;
-    width: 35%;
+    width: 40%;
     margin: 1.5rem;
     box-shadow: 5px 5px 17px -5px #000000;
     padding: 2rem 1rem;

@@ -12,7 +12,7 @@ import service from './services/service';
 import FinalForm from './components/Form/FinalForm'
 import FieldContextProvider from './components/Context/FieldContext';
 import Dashboard from './components/Dashboard/Dashboard';
-
+import NotFound from './components/Dashboard/NotFound'
 function App() {
   const [title,setTitle] = useState('');
   const [show, setShow] = useState(false);
@@ -44,6 +44,7 @@ function App() {
               </>
               } />
               <Route path="/finalform/:id" element={<FinalForm />} />
+              <Route path="*" element={<NotFound />}/>
             </Routes>
         </div>
       </Router>

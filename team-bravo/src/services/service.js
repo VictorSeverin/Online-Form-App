@@ -26,7 +26,13 @@ class Service {
         return axios.get(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId)
     }
     deleteType(formId,typeId){
-        return axios.delete(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId) 
+        return axios.delete(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId + 'types/' + typeId) 
+    }
+    createSumbission(formId,submission){
+        return axios.post(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId + '/submission', submission)
+    }
+    getSubmissions(formId){
+        return axios.get(TEAM_BRAVO_API_BASE_URL + 'forms/' + formId + '/submission')
     }
 }
 

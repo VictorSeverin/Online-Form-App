@@ -1,13 +1,13 @@
 import { Form, Button, FloatingLabel, Check, Row, Col,InputGroup,FormControl} from "react-bootstrap";
 import React, { useContext, useState,useRef,useEffect } from "react";
 import { FieldContext } from "../Context/FieldContext";
-import { useForm } from "react-hook-form";
 import '../Form/FinalForm.css';
 import Confetti from 'react-confetti'
+import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 
 export default function FinalForm() {
-  const {title,description,submissionMessage } = useContext(FieldContext);
+  const {title,description,submissionMessage,createSubmission } = useContext(FieldContext);
   const { register, handleSubmit,formState: { errors } } = useForm();
   const [showConfirm,setShowConfirm] = useState(false);
   const [height, setHeight] = useState(null);
@@ -37,7 +37,7 @@ export default function FinalForm() {
 }
   const onSubmit = (data) => 
   {
-    console.log(data);
+    createSubmission(data,id);
     setShowConfirm(!showConfirm);
   }
   const clearForm = () => {
@@ -363,6 +363,7 @@ export default function FinalForm() {
                   case "Toggle":
                       return(
                         <div className="form-elem">
+                        {/* <Form.label className="elem-label" column >{item.label}</Form.label> */}
                         <Form.Check 
                         type="switch"
                         id="custom-switch"

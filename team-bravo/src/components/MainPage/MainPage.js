@@ -3,9 +3,12 @@ import FieldTable from "./FieldTable/FieldTable"
 import * as IoIcons from "react-icons/io";
 import { Form } from 'react-bootstrap'
 import { FieldContext } from "../Context/FieldContext";
+import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 
-function MainPage() {
+   
+    function MainPage() {
+    const { register, handleSubmit,formState: { errors } } = useForm();
     const {loadInitial, finalElems, editTitle,title,editDescription,description,editSubmissionMessage,submissionMessage} = useContext(FieldContext)
     // const {editTitle} = useContext(FieldContext)
     // const {title} = useContext(FieldContext)

@@ -44,6 +44,14 @@ function FieldContextProvider(props) {
            console.log("Error: " + error)
          })
     }
+    const createSubmission = (data,formId) =>{
+      console.log(data);
+      service.createSumbission(formId,data).then((response) =>{
+        console.log(response.data)
+      }).then(error =>{
+        console.log("Error: " + error)
+      })
+    }
 
     const deleteElem = (index) => {
       console.log(finalElems[index].id)
@@ -53,13 +61,14 @@ function FieldContextProvider(props) {
       // TOOD: add server functionality as well
     }
 
+
     const editElem = (index, newElem) => {
       const newElems = [...finalElems.slice(0,index), newElem, ...finalElems.slice(index+1)]
       setFinalElems(newElems)
     }
 
     return (
-        <FieldContext.Provider value={{finalElems, title, description, loadInitial, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
+        <FieldContext.Provider value={{finalElems, title, description, createSubmission,loadInitial, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
             {props.children}
         </FieldContext.Provider>
     )
