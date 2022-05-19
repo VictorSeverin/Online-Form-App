@@ -6,10 +6,9 @@ export const FieldContext = createContext();
 function FieldContextProvider(props) {
 
     const [finalElems, setFinalElems] = useState([])
-    const [title, setTitle] = useState("")
+    const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [formInfo,setFormInfo] = useState([]) 
-    const [submissionMessage,setSubmissionMessage] = useState("");
+    const [message,setMessage] = useState("");
     const [formId, setFormId] = useState();
 
     const loadInitial = (id) => {
@@ -20,16 +19,20 @@ function FieldContextProvider(props) {
     }
       
 
-    const editTitle = (t) => {
-      setTitle(t)
-      service.updateForm(3,{title,description})
+    const editTitle = (name,formId) => {
+      setName(name)
+      service.updateForm(formId,{name,description,message})
     }
     
-    const editDescription = (d) => {
-      setDescription(d)
+    const editDescription = (description,formId) => {
+      setDescription(description)
+      service.updateForm(formId,{name,description,message})
+
     }
-    const editSubmissionMessage = (m) =>{
-      setSubmissionMessage(m)
+    const editSubmissionMessage = (message,formId) =>{
+      setMessage(message)
+      service.updateForm(formId,{name,description,message})
+
     }
     
     const addElem = (formID, elem) => {
@@ -68,7 +71,7 @@ function FieldContextProvider(props) {
     }
 
     return (
-        <FieldContext.Provider value={{finalElems, title, description, createSubmission,loadInitial, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,submissionMessage}}>
+        <FieldContext.Provider value={{finalElems, name, description, createSubmission,loadInitial, editTitle, editDescription, addElem, deleteElem, editElem,editSubmissionMessage,message}}>
             {props.children}
         </FieldContext.Provider>
     )

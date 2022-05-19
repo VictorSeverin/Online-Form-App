@@ -8,13 +8,16 @@ import * as FiIcons from "react-icons/fi";
 import './sidebar.css'
 import { useState } from 'react'
 import userLogo from './profilepic.jpg'
+import { Link } from 'react-router-dom';
 
 export default function Sidebar({handleShow}){
     return(
         <div className='wrapper'>
             <nav className='nav-menu'>
                 <div className='sidebar-title'>
-                    <h2>TeamBravo</h2>
+                    <Link to="/form">
+                        <h2>TeamBravo</h2>
+                    </Link>
                 </div>
                 <form className='sidebar-search'>
                     <input type="text" name = "name" placeholder="Search" className = "input" />

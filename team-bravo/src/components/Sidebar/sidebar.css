@@ -9,6 +9,7 @@
     border-bottom: 2px solid gray;
     font-weight: bolder;
     font-size: 20px;
+    text-decoration: none;
 }
 .wrapper{
     display: flex;
