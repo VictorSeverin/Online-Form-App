@@ -1,4 +1,4 @@
-# Team-Bravo-Project
+# Online-Form-App
 To start the react app:
 1. Install node.js on your machine
 2. clone this repo
